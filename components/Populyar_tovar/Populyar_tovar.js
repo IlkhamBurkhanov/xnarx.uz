@@ -321,7 +321,7 @@ const Populyar_nov = ({ mobile, cartItems, product, onAdd, onRemove }) => {
   return (
     <section
       id="populyar"
-      className="sm:mx-2 bg-white pl-[16px]  mt-5 md:pt-[60px]"
+      className="sm:mx-2 bg-white pl-[16px]  mt-5 md:pt-[30px]"
     >
       <h2 className="font-bold text-xl md:text-2xl leading-36 pl-3 md:pl-14">
         {lang === "ru"

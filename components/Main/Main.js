@@ -169,8 +169,7 @@ function Main() {
       <Magazines />
       <Hero />
       <PopularCategories />
-      {/* <Order /> */}
-      {/* <Basket /> */}
+
       <Populyar_nov
         cartItems={cartItems}
         onAdd={onAdd}
@@ -195,6 +194,7 @@ function Main() {
         onRemove={onRemoved}
         product={discountProduct}
       />
+      <PopularCategories />
     </main>
   );
 }

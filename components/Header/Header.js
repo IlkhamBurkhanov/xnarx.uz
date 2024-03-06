@@ -201,7 +201,7 @@ function Header() {
               <Link href={"/"} onClick={() => dispatch(setCategoryId(""))}>
                 <Image
                   priority={true}
-                  className="w-40 h-auto hidden sm:inline-block"
+                  className="w-40 h-[50px] hidden sm:inline-block"
                   src={"/Assets/Images/HeaderAndHeroImg/logo.jpg"}
                   width={200}
                   height={50}
@@ -209,7 +209,7 @@ function Header() {
                 />
                 <Image
                   priority={true}
-                  className="w-20 h-auto sm:hidden"
+                  className="w-20 h-[50px] sm:hidden"
                   src={"/Assets/Images/HeaderAndHeroImg/logo.jpg"}
                   width={150}
                   height={14}
@@ -529,7 +529,7 @@ function Header() {
           >
             <Image
               priority="true"
-              className=" w-[150px] h-menuBarHeight"
+              className=" w-[150px] h-[40px]"
               src={"/Assets/Images/HeaderAndHeroImg/logo.jpg"}
               width={150}
               height={14}
@@ -541,7 +541,7 @@ function Header() {
             {Object.entries(categoryGroups).map(
               ([mainCategory, index], indexAll) => {
                 return (
-                  <div className=" ">
+                  <div key={indexAll} className=" ">
                     {" "}
                     <div
                       onClick={() =>

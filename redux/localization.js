@@ -91,14 +91,6 @@ const languages = {
     },
     footer_text:
       "XNARX-MARKET © 2024, XXXXXXXXXXX tomonidan ishlab chiqilgan Barcha huquqlar himoyalangan.",
-    naduvniy: {
-      route: "Orqaga",
-      name: "Puflanadigan ",
-      name2: "Tovar aksessuarlari",
-      name3: "Ramkali Tovarlar",
-    },
-    show: "Ko'proq ko'rsatish",
-    successText: "Успешно отправлено!",
   },
 };
 

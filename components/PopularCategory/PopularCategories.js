@@ -7,11 +7,11 @@ import { GiVacuumCleaner } from "react-icons/gi";
 import { CgSmartHomeRefrigerator } from "react-icons/cg";
 function PopularCategories() {
   return (
-    <div className="md:mx-16 md:mt-10 mx-5 mt-5">
-      <h3 className="text-black-black_thin text-medium font-bold  md:text-2xl leading-36  md:pl-14">
+    <div className="md:mx-10 md:mt-8 mx-5 mt-5">
+      <h3 className="text-black-black_thin text-medium font-bold  md:text-2xl md:pl-10 leading-36">
         Ommabop kategoriyalar
       </h3>
-      <div className="flex  gap-3 scrollbar-hide overflow-x-auto">
+      <div className="flex  gap-3 sm:py-4 sm:px-2 scrollbar-hide overflow-x-auto">
         <Link
           href={{
             pathname: "/categoryPage",

@@ -64,6 +64,7 @@ const Footer = () => {
           <div className="max-w-281 w-full">
             <Link href={"/"}>
               <Image
+                className="w-[164px] h-[60px]"
                 src={`/Assets/Images/HeaderAndHeroImg/logo.jpg`}
                 width={164}
                 height={16}

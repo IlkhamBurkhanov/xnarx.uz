@@ -8,9 +8,9 @@ function Magazines() {
     <>
       <div className="mt-5 sm:mt-7 md:mt-[90px] sm:mx-14 mx-5 ">
         <div className="flex justify-around items-center lg:gap-10 sm:gap-5 gap-2">
-          <h2 className=" hidden sm:block w-full text-center text-orange-500  font-medium border-b-2 border-orange-500 text-xs sm:text-lg py-1 ">
+          {/* <h2 className=" hidden sm:block w-full text-center text-orange-500  font-medium border-b-2 border-orange-500 text-xs sm:text-lg py-1 ">
             Magazinlar:
-          </h2>
+          </h2> */}
           <div className=" w-full border shadow-md pt-1 pb-2 md:pt-2.5 bg-yellow-400  sm:bg-white sm:pb-3 sm:px-4 px-2 rounded-lg">
             <Image
               className="w-16 h-4 sm:w-[120px] mx-auto sm:h-5"
