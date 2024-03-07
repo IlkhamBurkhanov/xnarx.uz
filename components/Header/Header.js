@@ -305,98 +305,8 @@ function Header() {
                     alt="Flag Russia"
                   />
                 </div>
-
-                {/* <ul
-                  className={`${
-                    openUser
-                      ? "translate-y-0.5 opacity-1 h-auto"
-                      : "-translate-y-16 opacity-0 h-2 overflow-hidden "
-                  } duration-300 absolute cursor-pointer shadow-lg mt-3 rounded-md right-0 w-[144px] bg-white flex flex-col`}
-                >
-                  <Link href={"/login"}>
-                    <li
-                      onClick={() => setOpenUser(!openUser)}
-                      className="pt-3 pl-3 pr-4  items-center justify-end"
-                    >
-                      Войти
-                    </li>
-                  </Link>
-                  <Link href={"/login"}>
-                    <li
-                      onClick={() => setOpenUser(!openUser)}
-                      className="pl-3 pt-1 pb-3 items-center justify-end"
-                    >
-                      Регистрация
-                    </li>
-                  </Link>
-                </ul> */}
               </div>
 
-              {/* <a className="flex sm:hidden z-50" href="tel:+998901288182">
-                <Image
-                  priority={true}
-                  className="w-6 h-6"
-                  src={"/Assets/Images/HeaderAndHeroImg/phone-img.svg"}
-                  width={24}
-                  height={24}
-                  alt="Phone Img"
-                />
-              </a> */}
-
-              {/* <div className="relative ">
-                <div
-                  onClick={() => setOpenLang(!openLang)}
-                  className="bg-white relative language-wrap hidden cursor-pointer sm:flex ml-5 w-20  items-center justify-between py-3 z-40 pl-1 pr-2 rounded-md"
-                >
-                  <Image
-                    priority={true}
-                    className="w-7 h-5"
-                    src={flagImg}
-                    width={28}
-                    height={20}
-                    alt="Flag Russia"
-                  />
-                  <span>{flagName}</span>
-                  <Image
-                    priority={true}
-                    className={`${
-                      openLang
-                        ? "-rotate-180 duration-300"
-                        : "-rotate-0 duration-300"
-                    }  w-3 h-2`}
-                    src={"/Assets/Images/HeaderAndHeroImg/drop-img.svg"}
-                    width={9}
-                    height={5}
-                    alt="Drop img"
-                  />
-                </div>
-                <ul
-                  className={`${
-                    openLang
-                      ? "translate-y-0.5 opacity-1 h-auto"
-                      : "-translate-y-16 opacity-0 h-2 overflow-hidden "
-                  } duration-300 absolute cursor-pointer shadow-lg rounded-md right-0 w-20 bg-white flex flex-col`}
-                >
-                  <li
-                    onClick={handleClickedFlag}
-                    className="items-lang flex  pt-3 pl-3 pr-4 pb-1.5 items-center justify-end"
-                  >
-                    Uz
-                  </li>
-                  <li
-                    onClick={handleClickedFlag}
-                    className="items-lang flex pl-3 pt-1.5 pr-4  pb-3 items-center justify-end"
-                  >
-                    En
-                  </li>
-                  <li
-                    onClick={handleClickedFlag}
-                    className="items-lang flex pl-3 pr-4  pb-3 items-center justify-end"
-                  >
-                    Ru
-                  </li>
-                </ul>
-              </div> */}
               <button className="hidden cursor-pointer md:inline-block ml-3 xl:hidden">
                 <Image
                   onClick={() => setClickMenu(true)}
@@ -414,7 +324,7 @@ function Header() {
         <div
           className={
             catalog
-              ? "w-full h-[400px] shadow-md hidden lg:block bg-white"
+              ? "w-full h-[420px] shadow-md hidden lg:block bg-white"
               : "hidden"
           }
         >

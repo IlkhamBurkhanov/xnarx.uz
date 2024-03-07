@@ -75,7 +75,7 @@ function PopularCategories() {
         <Link
           href={{
             pathname: "/categoryPage",
-            query: { category: "Changyutgichlar" },
+            query: { category: "Changyutgich" },
           }}
           className="flex gap-5 items-center rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
         >

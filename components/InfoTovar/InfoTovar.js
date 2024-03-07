@@ -4,6 +4,27 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { DateTime } from "luxon";
+import {
+  Chart as ChartJS,
+  LineElement,
+  TimeScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+import "chartjs-adapter-date-fns";
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+  LineElement,
+  TimeScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend
+);
 
 import Image from "next/image";
 import Link from "next/link";
@@ -32,6 +53,7 @@ const InfoTovar = () => {
   const [numberProduct, setNumberProduct] = useState(8);
   const [recentPrice, setRecentPrice] = useState([]);
   const [loader, setLoader] = useState(true);
+  const [takeDateGragh, setTakeDateGragh] = useState([]);
 
   const [productImageUrl, setProductImageUrl] = useState("");
   const [priceHistoryByStore, setPriceHistoryByStore] = useState({});
@@ -52,9 +74,10 @@ const InfoTovar = () => {
     axios
       .get(`${env}/product/getAllPH?product_name=${router.query.product_name}`)
       .then((res) => {
-        setProduct(res?.data?.object[0]);
-        setRecentPrice(res?.data?.object[0]?.priceHistory[0]?.price);
         setLoader(false);
+        setProduct(res?.data?.object[0]);
+        setTakeDateGragh(res?.data?.object);
+        setRecentPrice(res?.data?.object[0]?.priceHistory[0]?.price);
       })
       .catch((err) => {
         console.log(err);
@@ -62,8 +85,52 @@ const InfoTovar = () => {
   }, [router]);
   // console.log(productId);
 
-  console.log(product);
-  console.log(recentPrice);
+  function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+  // LABELS
+  const allDates = Array.from(
+    new Set(
+      takeDateGragh.flatMap((item) =>
+        item.priceHistory.map((history) => history.date.split("T")[0])
+      )
+    )
+  );
+
+  // Sorting dates
+  allDates.sort();
+
+  // Resulting labels
+  const labels = allDates.map((date) => date.split("T")[0]);
+  console.log(labels);
+  const nextDatasets = takeDateGragh.map((item) => ({
+    label: item.store_name,
+    data: item.priceHistory.map((history) => history.price),
+    backgroundColor: getRandomColor(), // You can customize this as needed
+    tension: 0.4,
+  }));
+  const data = {
+    labels: labels,
+    datasets: nextDatasets,
+  };
+  const options = {
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "day",
+        },
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
 
   return (
     <div className="">
@@ -117,71 +184,15 @@ const InfoTovar = () => {
                   height={370}
                 />
               </div>
-
-              {/* <Swiper
-              spaceBetween={50}
-              slidesPerView={
-                product[0]?.image.length > 5 ? 5 : product[0]?.image.length
-              }
-              onSlideChange={() => console.log("slide change")}
-              onSwiper={(swiper) => console.log(swiper)}
-            >
-              {product
-                ? product[0]?.image.map((item, i) => {
-                    return (
-                      <SwiperSlide key={i} className="mt-2.5">
-                        <Image
-                          key={i}
-                          className="object-cover w-[80px] h-[66px] border rounded-md"
-                          src={ImageSale}
-                          width={80}
-                          height={66}
-                          alt={"IMG"}
-                        />
-                      </SwiperSlide>
-                    );
-                  })
-                : null}
-            </Swiper> */}
-
-              {/* <div className="mt-10">
-              <h2 className=" text-2xl text-[#000000] font-bold">
-                Описание товара
-              </h2>
-              <p className="mt-6 text-[#464A4D] text-sm leading-7">
-                Сборный бассейн Intex Rectangular Frame Pool легко и быстро
-                устанавливается. Процесс сборки занимает 30 минут (до наполнения
-                водой). Технология Super-Tough придает стенкам бассейна тройную
-                прочность. Они сделаны из трех слоев: два слоя плотного винила и
-                один — полиэстер для особой прочности. Стальной каркас
-                выдерживает большие нагрузки, в нем одновременно могут купаться
-                несколько человек
-              </p>
-              <p className="mt-6 text-[#464A4D] text-sm leading-7">
-                У бассейна есть сливной клапан, который присоединяется к
-                садовому шлангу. Воду из можно слить в любое удобное место.
-                Также есть отверстия для подключения фильтрующего насоса.
-              </p>
-            </div> */}
-              {/* <div className="mt-5 text-sm leading-7">
-                <h2 className="font-bold">Характеристики товара</h2>
-                <p>
-                  {" "}
-                  Размеры: <span>220х150х60 см</span>{" "}
-                </p>
-                <p>
-                  Объем: <span>2 282 л</span>
-                </p>
-                <p>
-                  Время сборки: <span>20 мин</span>
-                </p>
-              </div> */}
             </div>
             <div className="md:col-span-1">
               <h1 className="font-bold text-xl md:text-2xl">
                 {product?.product_name}
               </h1>
               {/* <canvas ref={chartRef} className="w-full" /> */}
+
+              <Line data={data} options={options}></Line>
+
               <div className=" flex justify-between items-center mt-2 sm:mt-5 sm:py-1 border px-2">
                 <div className="flex  py-1 gap-2 items-center">
                   {/* <img
