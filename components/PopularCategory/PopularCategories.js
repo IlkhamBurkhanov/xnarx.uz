@@ -11,13 +11,13 @@ function PopularCategories() {
       <h3 className="text-black-black_thin text-medium font-bold  md:text-2xl md:pl-10 leading-36">
         Ommabop kategoriyalar
       </h3>
-      <div className="flex  gap-3 sm:py-4 sm:px-2 scrollbar-hide overflow-x-auto">
+      <div className="flex justify-between items-center  gap-3 sm:py-4 sm:px-2 scrollbar-hide overflow-x-auto">
         <Link
           href={{
             pathname: "/categoryPage",
             query: { category: "Noutbuklar" },
           }}
-          className="flex gap-5 items-center rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
+          className="flex gap-5 items-center w-full rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
         >
           <CiLaptop className="sm:w-12 w-8 h-8 sm:h-12 rounded-md sm:p-2 p-1 text-orange-500 bg-orange-100" />
           <h4 className=" font-semibold text-[#7a7a7a] text-sm sm:text-base">
@@ -29,7 +29,7 @@ function PopularCategories() {
             pathname: "/categoryPage",
             query: { category: "Smartfonlar" },
           }}
-          className="flex gap-5 items-center rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
+          className="flex gap-5 items-center w-full rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
         >
           <IoPhonePortraitOutline className="sm:w-12 w-8 h-8 sm:h-12 rounded-md sm:p-2 p-1 text-orange-500 bg-orange-100" />
           <h4 className=" font-semibold text-[#7a7a7a] text-sm sm:text-base">
@@ -41,7 +41,7 @@ function PopularCategories() {
             pathname: "/categoryPage",
             query: { category: "Televizorlar" },
           }}
-          className="flex gap-5 items-center rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
+          className="flex gap-5 items-center w-full rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
         >
           <IoTvOutline className="sm:w-12 w-8 h-8 sm:h-12 rounded-md sm:p-2 p-1 text-orange-500 bg-orange-100" />
           <h4 className=" font-semibold text-[#7a7a7a] text-sm sm:text-base">
@@ -53,7 +53,7 @@ function PopularCategories() {
             pathname: "/categoryPage",
             query: { category: "Kir yuvish mashinalari" },
           }}
-          className="flex gap-5 items-center rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
+          className="flex gap-5 items-center w-full rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
         >
           <GiWashingMachine className="w-12 h-12 rounded-md p-2 text-orange-400 bg-orange-100" />
           <h4 className=" font-semibold text-[#7a7a7a] text-sm sm:text-base">
@@ -65,7 +65,7 @@ function PopularCategories() {
             pathname: "/categoryPage",
             query: { category: "Muzlatgichlar" },
           }}
-          className="flex gap-5 items-center rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
+          className="flex gap-5 items-center w-full rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
         >
           <CgSmartHomeRefrigerator className="w-12 h-12 rounded-md p-2 text-orange-400 bg-orange-100" />
           <h4 className=" font-semibold text-[#7a7a7a] text-sm sm:text-base">
@@ -77,7 +77,7 @@ function PopularCategories() {
             pathname: "/categoryPage",
             query: { category: "Changyutgich" },
           }}
-          className="flex gap-5 items-center rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
+          className="flex gap-5 items-center w-full rounded-xl border sm:pl-4 pl-2 sm:pr-10 pr-5 sm:py-3 py-1 hover:scale-105"
         >
           <GiVacuumCleaner className="sm:w-12 w-8 h-8 sm:h-12 rounded-md sm:p-2 p-1 text-orange-500 bg-orange-100" />
           <h4 className=" font-semibold text-[#7a7a7a] text-sm sm:text-base">
