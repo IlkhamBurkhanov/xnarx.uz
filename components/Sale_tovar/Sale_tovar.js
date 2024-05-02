@@ -46,7 +46,7 @@ const Sale_nov = ({ mobile, cartItems, product, onAdd, onRemove }) => {
   useEffect(() => {
     axios
       .get(
-        `${env}/product/category/Kir%20yuvish%20mashinalari?minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10`
+        `${env}product/category/Kir%20yuvish%20mashinalari?minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10`
       )
       .then((res) => {
         setTovar(res?.data?.object);

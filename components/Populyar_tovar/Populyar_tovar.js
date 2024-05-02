@@ -48,7 +48,7 @@ const Populyar_nov = ({ mobile, cartItems, product, onAdd, onRemove }) => {
   useEffect(() => {
     axios
       .get(
-        `${env}/product/category/Smartfonlar?minPrice=2000000&maxPrice=100000000&orderType=true&page=0&size=10`
+        `${env}product/category/Smartfonlar?minPrice=2000000&maxPrice=100000000&orderType=true&page=0&size=10`
       )
       .then((res) => {
         // console.log(res);

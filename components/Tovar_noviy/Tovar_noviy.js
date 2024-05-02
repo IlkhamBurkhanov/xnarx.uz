@@ -60,7 +60,7 @@ const Tovar_nov = ({ mobile, cartItems, product, onAdd, onRemove }) => {
   useEffect(() => {
     axios
       .get(
-        `${env}/product/category/Elektr%20choynaklar?minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10`
+        `${env}product/category/Elektr%20choynaklar?minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10`
       )
       .then((res) => {
         setTovar(res?.data?.object);
