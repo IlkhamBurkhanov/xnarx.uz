@@ -10,15 +10,6 @@ export default function Home() {
   const categoryId = useSelector((state) => state.data.categoryId);
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `https://intex-shop-production.up.railway.app/api/products?current_page=1`
-  //     )
-  //     .then((res) => setData(res.data.result))
-  //     .catch((e) => {});
-  // }, [categoryId]);
-
   return (
     <>
       <Head>

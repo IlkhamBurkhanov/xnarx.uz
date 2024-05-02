@@ -59,20 +59,15 @@ const InfoTovar = () => {
   const [priceHistoryByStore, setPriceHistoryByStore] = useState({});
   const router = useRouter();
 
-  const productUrl = `${env}/product/getAllPH?product_name=${router.query.product_name}`;
-  // nEeeeeeeeeeeeeeeewwwwwwwwwwwwwwwwwwwwww
+  const productUrl = `${env}product/getAllPH?product_name=${router.query.product_name}`;
 
-  // const productId = useSelector((state) => state.data.productId);
-
-  //intex-shop-production.up.railway.app/api/products/getOne/4
-  //   https://intex-shop-production.up.railway.app/api/products?page=0&limit=100
   const formatPrice2 = (price) => {
     const formattedPrice = parseFloat(price).toFixed(0);
     return formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
   useEffect(() => {
     axios
-      .get(`${env}/product/getAllPH?product_name=${router.query.product_name}`)
+      .get(`${env}product/getAllPH?product_name=${router.query.product_name}`)
       .then((res) => {
         setLoader(false);
         setProduct(res?.data?.object[0]);

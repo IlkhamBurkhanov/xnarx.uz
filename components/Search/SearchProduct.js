@@ -102,18 +102,7 @@ export default function SearchProduct({ data }) {
     setFiltersPrice(!filterPrice);
     setLoader(true);
     console.log(priceRange);
-    // Chckedboxs
-    // const filterData = filter.filter((item) => {
-    //   return checked && checked2 ? item.category_id === 1 && 2 : item;
-    // });
-    // const filterData = filters.filter((item) => {
-    //   return item.discount_price > minValue;
-    // });
   };
-  // console.log(categoryId);
-
-  // https://intex-shop-production.up.railway.app/api/products?current_page=1  Get All Products
-  //
 
   let arrayItem = [];
   for (let i = 0; i < totalPage; i++) {
