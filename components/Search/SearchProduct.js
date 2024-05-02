@@ -87,7 +87,7 @@ export default function SearchProduct({ data }) {
     setLoader(true);
     axios
       .get(
-        `${env}/product/getByName?product_name=${router.query.keyword}&minPrice=${priceRange.min}&maxPrice=${priceRange.max}&orderType=True&page=${currentPage}&size=15`
+        `${env}product/getByName?product_name=${router.query.keyword}&minPrice=${priceRange.min}&maxPrice=${priceRange.max}&orderType=True&page=${currentPage}&size=15`
       )
       .then((res) => {
         setProducts(res?.data?.object);
