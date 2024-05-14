@@ -424,9 +424,9 @@ function Header() {
         onClick={handlMenuOpen}
         className={`${
           clickMenu
-            ? "left-0 bg-black w-auto inset-0 bg-opacity-25 backdrop-blur-sm duration-300"
-            : "-left-80 duration-300 w-0 bg-none backdrop-blur-0"
-        } fixed w-full z-50 top-0  `}
+            ? "left-0 bg-black w-auto inset-0 bg-opacity-25 backdrop-blur-sm duration-300 fixed z-50 top-0 "
+            : "hidden"
+        }   `}
       >
         <div className="w-modalMenu h-modalMenuHe h-screen bg-white pt-10 px-4">
           <Link
