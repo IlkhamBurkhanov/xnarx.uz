@@ -219,7 +219,6 @@ function Header() {
               <div className="hidden items-center ml-10 xl:flex space-x-6">
                 <div
                   onClick={() => setCatalog(!catalog)}
-                  id="dropdown"
                   className="z-50  px-5 py-2 rounded-md  category bg-[#ff9d3a] inline-block relative mr-1 pr-4 text-base text-black-black_dark font-medium"
                   href={"/"}
                 >
@@ -513,38 +512,6 @@ function Header() {
               }
             )}
           </div>
-          {/* <div className="flex flex-col space-y-5 mt-4 font-medium text-base text-black-black_dark ">
-            <Link onClick={() => setClickMenu(false)} href={"#populyar"}>
-              {lang === "ru"
-                ? "Популярные товары"
-                : lang === "en"
-                ? "Popular goods"
-                : "Ommabop tovarlar"}
-            </Link>
-            <Link onClick={() => setClickMenu(false)} href={"#noviy"}>
-              {lang === "ru"
-                ? "Новые товары"
-                : lang === "en"
-                ? "New goods"
-                : "Yangi tovarlar"}
-            </Link>
-            <Link onClick={() => setClickMenu(false)} href={"#skidka"}>
-              {lang === "ru"
-                ? "Товары со скидкой"
-                : lang === "en"
-                ? "Items on sale"
-                : "Chegirma tovarlar"}
-            </Link>
-            <Link onClick={() => setClickMenu(false)} href={"#optom"}>
-              {languages[lang].header.navbar.item1}
-            </Link>
-            <Link onClick={() => setClickMenu(false)} href={"#pochemu"}>
-              {languages[lang].header.navbar.item2}
-            </Link>
-            <Link onClick={() => setClickMenu(false)} href={"#consultation"}>
-              {languages[lang].header.navbar.item3}
-            </Link>
-          </div> */}
         </div>
       </div>
     </header>
