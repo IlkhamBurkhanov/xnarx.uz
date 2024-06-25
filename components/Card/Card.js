@@ -210,7 +210,7 @@ function Card({
           <div className="p-2 md:p-4 md:max-w-[260px] border-t-lineColor border-t-1">
             <div>
               {/* <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 "> */}
-              <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 max-h-[2rem] overflow-hidden text-ellipsis">
+              <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 max-h-[1.5rem] sm:max-h-[2rem] overflow-hidden text-ellipsis">
                 {name_uz}
               </h3>
             </div>
