@@ -10,6 +10,7 @@ import { setCategoryId } from "../../redux/siteDataReducer";
 import { useEffect } from "react";
 import axios from "axios";
 import { Spinner } from "../Spinner/Spinner";
+import Pagination from "../Pagination/Pagination";
 
 const env = process.env.NEXT_PUBLIC_TOKEN;
 
@@ -116,6 +117,57 @@ export default function Products({ data }) {
     setCurrentPage(itemy);
     setLoader(true);
   };
+  const generatePagination = () => {
+    const pages = [];
+    const totalNumbersToShow = 6;
+    const firstPageNumbers = 3;
+    const lastPageNumbers = 3;
+
+    // Determine the range of pages to show
+    if (pageCount <= totalNumbersToShow) {
+      for (let i = 0; i < pageCount; i++) {
+        pages.push(i);
+      }
+    } else {
+      // Add the first set of pages
+      for (let i = 0; i < firstPageNumbers; i++) {
+        pages.push(i);
+      }
+
+      // Add dots or intermediate page numbers
+      if (
+        currentPage >= firstPageNumbers &&
+        currentPage < pageCount - lastPageNumbers
+      ) {
+        if (currentPage > firstPageNumbers) {
+          pages.push("...");
+        }
+
+        const start = Math.max(currentPage - 1, firstPageNumbers);
+        const end = Math.min(currentPage + 2, pageCount - lastPageNumbers);
+
+        for (let i = start; i < end; i++) {
+          pages.push(i);
+        }
+
+        if (currentPage < pageCount - lastPageNumbers - 1) {
+          pages.push("...");
+        }
+      } else {
+        pages.push("...");
+      }
+
+      // Add the last set of pages
+      for (let i = pageCount - lastPageNumbers; i < pageCount; i++) {
+        pages.push(i);
+      }
+    }
+
+    return pages;
+  };
+  const [pageCount] = useState(totalPage);
+
+  const pages = generatePagination();
   return (
     <section className="mt-7 md:mt-32">
       <div className="max-w-container mx-auto w-full px-5">
@@ -123,76 +175,6 @@ export default function Products({ data }) {
           <p className="flex items-center text-2xl font-semibold text-black-black_thin">
             {router?.query?.category}
           </p>
-          {/* <div className="flex  justify-between items-center">
-            <h2 className="font-bold text-xl md:text-3xl text-black-black_dark mt-5 md:mt-6 mb-5">
-              {lang === "ru"
-                ? heading.category_ru
-                : lang === "uz"
-                ? heading.category_uz
-                : heading.category_en}
-            </h2>
-            <div className="flex justify-between items-center">
-              <strong className="text-base text-[#24283A] mr-2.5">
-                Сортировка
-              </strong>
-              <div
-                // onClick={() => setSortBtn(!sortBtn)}
-                onClick={() => setMenuCatOpen(!menuCatOpen)}
-                className="w-[170px] relative cursor-pointer  flex items-center justify-between  bg-[#F2F2F2] p-3 rounded-xl"
-              >
-                <span className="font-medium text-sm  text-homeSortWrap">
-                 aa
-                </span>
-                <svg
-                  width="24"
-                  height="22"
-                  viewBox="0 0 24 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 11L12 14L15 11"
-                    stroke="#04009A"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <ul
-                  className={` ${
-                    menuCatOpen
-                      ? "h-auto border-b-2  duration-200"
-                      : "h-0  duration-200 overflow-hidden"
-                  }  w-[170px]  absolute rounded-lg  mt-[120px] z-50  bg-white`}
-                >
-                  <li>
-                    <span
-                      className="font-normal  text-homeSortWrap text-sm mt-2  pl-3 inline-block text-black-black_thin cursor-pointer"
-                      onClick={() => {
-                        setMenuCatOpen(false);
-                        // setClickMenu(false);
-                        setSortBtn(!sortBtn);
-                      }}
-                    >
-                      Цена по убыванию
-                    </span>
-                  </li>
-                  <li>
-                    <span
-                      className="font-normal  text-homeSortWrap text-sm mt-2 pl-3 inline-block  text-black-black_thin cursor-pointer"
-                      onClick={() => {
-                        setMenuCatOpen(false);
-                        // setClickMenu(false);
-                        setSortBtn(!sortBtn);
-                      }}
-                    >
-                      Цена по возрастанию
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>  */}
 
           <div className="">
             <div className="grid sm:grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-5  text-[#464A4D]">
@@ -266,7 +248,7 @@ export default function Products({ data }) {
               )}
             </div>
           </div>
-          {totalPage > 1 ? (
+          {/* {totalPage > 1 ? (
             <div className=" flex justify-center mt-5">
               {arrayItem.map((itemy, index) => {
                 return (
@@ -282,7 +264,12 @@ export default function Products({ data }) {
                 );
               })}
             </div>
-          ) : null}
+          ) : null} */}
+          <Pagination
+            totalPage={totalPage}
+            currentPage={currentPage}
+            handleClickItem={handleClickItem}
+          />
         </div>
       </div>
     </section>
