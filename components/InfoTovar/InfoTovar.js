@@ -141,7 +141,7 @@ const InfoTovar = () => {
               className="text-orange-400"
               // onClick={() => dispatch(setCategoryId(0))}
             >
-              Главная
+              Bosh sahifa
             </Link>
             <Image
               className="mx-1"

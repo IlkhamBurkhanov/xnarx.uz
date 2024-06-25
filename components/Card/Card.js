@@ -183,27 +183,38 @@ function Card({
   const handleClick = () => {
     dispatch(setProductId(id));
   };
+  const formatPrice2 = (price) => {
+    const formattedPrice = parseFloat(price).toFixed(0);
+    return formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
 
   return (
     <>
-      <div className="card border rounded-xl  md:w-[232px] hover:scale-105 hover:border-orange-400 sm:w-[200px] w-max-[180px] shadow relative mb-3 mx-2  mt-5">
-        <div className=" md:max-h-[220px] w-max-180 mt-6 md:mt-0">
-          <img
-            className="mt-2 mb-0 mx-auto md:mb-3 w-[160px] h-[160px] object-contain  cursor-pointer"
-            src={`${img}${image}`}
-            alt="baseen_product_image"
-            layout="fill"
-            width={280}
-            height={220}
-          />
-        </div>
-        <div className="p-2 md:p-4 md:max-w-[260px] border-t-lineColor border-t-1">
-          <div>
-            <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 ">
-              {name_uz}
-            </h3>
+      <Link
+        href={{
+          pathname: "/infoProduct",
+          query: { product_name: name_uz },
+        }}
+      >
+        <div className="card border rounded-xl  md:w-[232px] hover:scale-105 hover:border-orange-400 sm:w-[200px] w-max-[180px] shadow relative mb-3 mx-2  mt-5">
+          <div className=" md:max-h-[220px] w-max-180 mt-6 md:mt-0">
+            <img
+              className="mt-2 mb-0 mx-auto md:mb-3 w-[160px] h-[160px] object-contain  cursor-pointer"
+              src={`${img}${image}`}
+              alt="product_image"
+              layout="fill"
+              width={280}
+              height={220}
+            />
           </div>
-          {/* <p
+          <div className="p-2 md:p-4 md:max-w-[260px] border-t-lineColor border-t-1">
+            <div>
+              {/* <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 "> */}
+              <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 max-h-[2rem] overflow-hidden text-ellipsis">
+                {name_uz}
+              </h3>
+            </div>
+            {/* <p
             className={`${
               subattributes.length > 0 ? "" : "h-6"
             } text-xs md:text-base m-0 mb-2 block leading-22 text-black-black_thin`}
@@ -211,23 +222,24 @@ function Card({
             {subattributes[0]?.attribute_ru} {subattributes[4]?.attribute_ru}
           </p> */}
 
-          <span className="font-semibold text-sm md:text-lg text-orange-400 block mb-2.5">
-            {price} so'm
-          </span>
+            <span className="font-semibold text-sm md:text-lg text-orange-400 block mb-2.5">
+              {formatPrice2(price)} so'm
+            </span>
 
-          <Link
-            href={{
-              pathname: "/infoProduct",
-              query: { product_name: name_uz },
-            }}
-            className={"text-sm md:text-base col-span-4"}
-          >
-            <Button className={"text-sm md:text-base"}>
-              Batafsil Ma'lumot
-            </Button>
-          </Link>
+            <Link
+              href={{
+                pathname: "/infoProduct",
+                query: { product_name: name_uz },
+              }}
+              className={"text-sm md:text-base col-span-4"}
+            >
+              <Button className={"text-sm md:text-base"}>
+                Batafsil Ma'lumot
+              </Button>
+            </Link>
+          </div>
         </div>
-      </div>
+      </Link>
 
       {/* --- Modal --- */}
     </>
