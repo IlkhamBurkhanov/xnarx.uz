@@ -190,13 +190,13 @@ function Card({
 
   return (
     <>
-      <Link
-        href={{
-          pathname: "/infoProduct",
-          query: { product_name: name_uz },
-        }}
-      >
-        <div className="card border rounded-xl  md:w-[232px] hover:scale-105 hover:border-orange-400 sm:w-[200px] w-max-[180px] shadow relative mb-3 mx-2  mt-5">
+      <div className="card border rounded-xl  md:w-[232px] hover:scale-105 hover:border-orange-400 sm:w-[200px] w-max-[180px] shadow relative mb-3 mx-2  mt-5">
+        <Link
+          href={{
+            pathname: "/infoProduct",
+            query: { product_name: name_uz },
+          }}
+        >
           <div className=" md:max-h-[220px] w-max-180 mt-6 md:mt-0">
             <img
               className="mt-2 mb-0 mx-auto md:mb-3 w-[160px] h-[160px] object-contain  cursor-pointer"
@@ -238,8 +238,8 @@ function Card({
               </Button>
             </Link>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
 
       {/* --- Modal --- */}
     </>
