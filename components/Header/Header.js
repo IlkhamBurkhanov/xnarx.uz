@@ -202,7 +202,7 @@ function Header() {
                 <Image
                   priority={true}
                   className="w-40 h-[50px] hidden sm:inline-block"
-                  src={"/Assets/Images/HeaderAndHeroImg/logo.png"}
+                  src={"/Assets/Images/HeaderAndHeroImg/logos1.png"}
                   width={200}
                   height={50}
                   alt="Site Logo"
@@ -210,7 +210,7 @@ function Header() {
                 <Image
                   priority={true}
                   className="w-20 h-[50px] sm:hidden"
-                  src={"/Assets/Images/HeaderAndHeroImg/logo.png"}
+                  src={"/Assets/Images/HeaderAndHeroImg/logos1.png"}
                   width={150}
                   height={14}
                   alt="Site Logo Mobile"
@@ -439,7 +439,7 @@ function Header() {
             <Image
               priority="true"
               className=" w-[150px] h-[40px]"
-              src={"/Assets/Images/HeaderAndHeroImg/logo.png"}
+              src={"/Assets/Images/HeaderAndHeroImg/logos1.png"}
               width={150}
               height={14}
               alt="Menu Bar Logo"
