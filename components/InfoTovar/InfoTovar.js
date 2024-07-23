@@ -67,12 +67,13 @@ const InfoTovar = () => {
   };
   useEffect(() => {
     axios
-      .get(`${env}product/getAllPH?product_name=${router.query.product_name}`)
+      .get(`${env}product/search?productId=${router.query.product_name}`)
       .then((res) => {
         setLoader(false);
-        setProduct(res?.data?.object[0]);
-        setTakeDateGragh(res?.data?.object);
-        setRecentPrice(res?.data?.object[0]?.priceHistory[0]?.price);
+        // console.log(res?.data?.priceHistory);
+        setProduct(res?.data);
+        setTakeDateGragh(res?.data?.priceHistory);
+        setRecentPrice(res?.data?.priceHistory[0]?.price);
       })
       .catch((err) => {
         console.log(err);
@@ -90,28 +91,34 @@ const InfoTovar = () => {
   }
   // LABELS
   const allDates = Array.from(
-    new Set(
-      takeDateGragh.flatMap((item) =>
-        item.priceHistory.map((history) => history.date.split("T")[0])
-      )
-    )
-  );
-
-  // Sorting dates
-  allDates.sort();
+    new Set(product?.priceHistory?.map((item) => item.date.split("T")[0]))
+  ).sort();
+  console.log(allDates);
 
   // Resulting labels
-  const labels = allDates.map((date) => date.split("T")[0]);
+  const labels = allDates;
   console.log(labels);
-  const nextDatasets = takeDateGragh.map((item) => ({
-    label: item.store_name,
-    data: item.priceHistory.map((history) => history.price),
-    backgroundColor: getRandomColor(), // You can customize this as needed
+
+  // Group data by storeName
+  const datasets = Array.from(
+    new Set(product?.priceHistory?.map((item) => item.storeName))
+  ).map((storeName) => ({
+    label: storeName,
+    data: labels.map((label) => {
+      const historyItem = product?.priceHistory?.find(
+        (item) =>
+          item.date.split("T")[0] === label && item.storeName === storeName
+      );
+      return historyItem ? historyItem.price : null;
+    }),
+    backgroundColor: getRandomColor(),
+    borderColor: getRandomColor(),
+    fill: false,
     tension: 0.4,
   }));
   const data = {
-    labels: labels,
-    datasets: nextDatasets,
+    labels,
+    datasets,
   };
   const options = {
     scales: {
@@ -126,6 +133,7 @@ const InfoTovar = () => {
       },
     },
   };
+  console.log(takeDateGragh);
 
   return (
     <div className="">
@@ -153,11 +161,11 @@ const InfoTovar = () => {
             <Link
               href={{
                 pathname: "/categoryPage",
-                query: { category: product?.category_name },
+                query: { category: product?.categoryName },
               }}
               className="text-orange-400"
             >
-              {product?.category_name}
+              {product?.categoryName}
             </Link>
             <Image
               className="mx-1"
@@ -166,14 +174,14 @@ const InfoTovar = () => {
               height={24}
               alt="Arrow_down"
             />
-            {product?.product_name}
+            {product?.productName}
           </p>
           <div className="grid md:grid-cols-2 gap-5 mt-5 md:mt-10">
             <div className=" md:col-span-1">
               <div className="border-2 rounded-xl ">
                 <img
                   className=" object-contain py-1 w-full h-[200px] md:h-[370px]"
-                  src={`${img}${product?.product_image}`}
+                  src={`${img}${product?.productImage}`}
                   alt="Success_image"
                   width={680}
                   height={370}
@@ -182,7 +190,7 @@ const InfoTovar = () => {
             </div>
             <div className="md:col-span-1">
               <h1 className="font-bold text-xl md:text-2xl">
-                {product?.product_name}
+                {product?.productName}
               </h1>
               {/* <canvas ref={chartRef} className="w-full" /> */}
 
@@ -194,14 +202,15 @@ const InfoTovar = () => {
                   src={`https://backendstartup-production-5c5e.up.railway.app/stores/${product?.store_name}`}
                 /> */}
                   <h3 className=" text-lg sm:text-xl font-medium">
-                    {product?.store_name}
+                    {/* {product?.store_name} */}
+                    {product?.priceHistory[0]?.storeName}
                   </h3>
                   <p className=" text-orange-400 text-lg">
                     {formatPrice2(recentPrice)} so'm
                   </p>
                 </div>
                 <a
-                  href={product?.product_link}
+                  href={product?.priceHistory[0]?.productLink}
                   className=" py-1 px-4 rounded text-white hover:scale-105 bg-orange-500 text-xs sm:text-base"
                 >
                   Sotib olish

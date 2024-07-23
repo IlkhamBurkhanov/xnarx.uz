@@ -103,86 +103,7 @@ function Card({
   };
 
   const phoneRegExp = /^[0-9]{9}$/;
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .required(
-        lang === "ru"
-          ? "Требуется имя пользователя, минимум 3 символа"
-          : lang === "en"
-          ? "Username is required, at least 3 characters"
-          : "Foydalanuvchi nomi talab qilinadi, kamida 3 ta belgi"
-      )
-      .min(
-        3,
-        lang === "ru"
-          ? "Минимум 3 символа"
-          : lang === "en"
-          ? "Minimal 3 characters"
-          : "Minimal 3 ta belgi"
-      )
-      .max(
-        20,
-        lang === "ru"
-          ? "Максимум 20 символов"
-          : lang === "en"
-          ? "Maximum 20 characters"
-          : "Maksimal 20 ta belgi"
-      ),
-    number: Yup.string(
-      lang === "ru"
-        ? "Должен быть только номер"
-        : lang === "en"
-        ? "Must be only number"
-        : "Faqat raqam bo'lishi kerak"
-    )
-      .matches(phoneRegExp, {
-        message:
-          lang === "ru"
-            ? "Номер телефона недействителен"
-            : lang === "en"
-            ? "Phone number is not valid."
-            : "Telefon raqami yaroqsiz.",
-        excludeEmptyString: true,
-      })
-      .required(
-        lang === "ru"
-          ? "Необходимый номер телефона"
-          : lang === "en"
-          ? "Required phone number"
-          : "Telefon raqami kiritish majburiy"
-      ),
-    address: Yup.string()
-      .required(
-        lang === "ru"
-          ? "Укажите адрес"
-          : lang === "en"
-          ? "Address is required"
-          : "Manzil kiritish majburiy"
-      )
-      .min(
-        3,
-        lang === "ru"
-          ? "Минимум 3 символа"
-          : lang === "en"
-          ? "Minimal 3 characters"
-          : "Minimal 3 ta belgi"
-      ),
-  });
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit,
-    validationSchema,
-  });
-
-  const ProductOrder = (id) => {
-    setShowModal(true);
-    const fintProduct = data.find((e) => e.id === id);
-    setFind(fintProduct);
-  };
-  const handleClick = () => {
-    dispatch(setProductId(id));
-  };
   const formatPrice2 = (price) => {
     const formattedPrice = parseFloat(price).toFixed(0);
     return formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -194,7 +115,7 @@ function Card({
         <Link
           href={{
             pathname: "/infoProduct",
-            query: { product_name: name_uz },
+            query: { product_name: id },
           }}
         >
           <div className=" md:max-h-[220px] w-max-180 mt-6 md:mt-0">

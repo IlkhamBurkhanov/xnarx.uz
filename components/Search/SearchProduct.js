@@ -10,6 +10,7 @@ import { setCategoryId } from "../../redux/siteDataReducer";
 import { useEffect } from "react";
 import axios from "axios";
 import { Spinner } from "../Spinner/Spinner";
+import Pagination from "../Pagination/Pagination";
 
 const env = process.env.NEXT_PUBLIC_TOKEN;
 
@@ -85,9 +86,10 @@ export default function SearchProduct({ data }) {
   };
   useEffect(() => {
     setLoader(true);
+    // http://194.31.52.65:8080/api/product/search/artel?minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10
     axios
       .get(
-        `${env}product/getByName?product_name=${router.query.keyword}&minPrice=${priceRange.min}&maxPrice=${priceRange.max}&orderType=True&page=${currentPage}&size=15`
+        `${env}product/search/${router.query.keyword}?&minPrice=${priceRange.min}&maxPrice=${priceRange.max}&orderType=True&page=${currentPage}&size=15`
       )
       .then((res) => {
         setProducts(res?.data?.object);
@@ -113,6 +115,9 @@ export default function SearchProduct({ data }) {
     setCurrentPage(itemy);
     setLoader(true);
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   return (
     <section className="mt-7 md:mt-32">
@@ -126,76 +131,6 @@ export default function SearchProduct({ data }) {
               {router?.query?.keyword}
             </p>
           </div>
-          {/* <div className="flex  justify-between items-center">
-            <h2 className="font-bold text-xl md:text-3xl text-black-black_dark mt-5 md:mt-6 mb-5">
-              {lang === "ru"
-                ? heading.category_ru
-                : lang === "uz"
-                ? heading.category_uz
-                : heading.category_en}
-            </h2>
-            <div className="flex justify-between items-center">
-              <strong className="text-base text-[#24283A] mr-2.5">
-                Сортировка
-              </strong>
-              <div
-                // onClick={() => setSortBtn(!sortBtn)}
-                onClick={() => setMenuCatOpen(!menuCatOpen)}
-                className="w-[170px] relative cursor-pointer  flex items-center justify-between  bg-[#F2F2F2] p-3 rounded-xl"
-              >
-                <span className="font-medium text-sm  text-homeSortWrap">
-                 aa
-                </span>
-                <svg
-                  width="24"
-                  height="22"
-                  viewBox="0 0 24 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 11L12 14L15 11"
-                    stroke="#04009A"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <ul
-                  className={` ${
-                    menuCatOpen
-                      ? "h-auto border-b-2  duration-200"
-                      : "h-0  duration-200 overflow-hidden"
-                  }  w-[170px]  absolute rounded-lg  mt-[120px] z-50  bg-white`}
-                >
-                  <li>
-                    <span
-                      className="font-normal  text-homeSortWrap text-sm mt-2  pl-3 inline-block text-black-black_thin cursor-pointer"
-                      onClick={() => {
-                        setMenuCatOpen(false);
-                        // setClickMenu(false);
-                        setSortBtn(!sortBtn);
-                      }}
-                    >
-                      Цена по убыванию
-                    </span>
-                  </li>
-                  <li>
-                    <span
-                      className="font-normal  text-homeSortWrap text-sm mt-2 pl-3 inline-block  text-black-black_thin cursor-pointer"
-                      onClick={() => {
-                        setMenuCatOpen(false);
-                        // setClickMenu(false);
-                        setSortBtn(!sortBtn);
-                      }}
-                    >
-                      Цена по возрастанию
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>  */}
 
           <div className="">
             <div className="grid sm:grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-5  text-[#464A4D]">
@@ -269,23 +204,12 @@ export default function SearchProduct({ data }) {
               )}
             </div>
           </div>
-          {totalPage > 1 ? (
-            <div className=" flex justify-center mt-5">
-              {arrayItem.map((itemy, index) => {
-                return (
-                  <button
-                    key={itemy}
-                    onClick={() => handleClickItem(itemy)}
-                    className={`${
-                      currentPage == itemy ? "bg-orange-400" : "bg-gray-300"
-                    } text-white py-1 px-2 border`}
-                  >
-                    <a href="#">{itemy + 1}</a>
-                  </button>
-                );
-              })}
-            </div>
-          ) : null}
+
+          <Pagination
+            totalPage={totalPage}
+            currentPage={currentPage}
+            handleClickItem={handleClickItem}
+          />
         </div>
       </div>
     </section>

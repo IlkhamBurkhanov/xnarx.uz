@@ -43,6 +43,10 @@ export default function Products({ data }) {
   const [filterPrice, setFiltersPrice] = useState(true);
   const [noFound, setNoFound] = useState(2);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
   const handleInput = (e) => {
     set_minValue(e.minValue);
     set_maxValue(e.maxValue);
