@@ -80,15 +80,21 @@ const InfoTovar = () => {
       });
   }, [router]);
   // console.log(productId);
-
-  function getRandomColor() {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+  function getColor(storeName) {
+    switch (storeName) {
+      case "Mediapark":
+        return "#FF0000"; // Red
+      case "Idea":
+        return "#FFC0CB"; // Pink
+      case "Texnomart":
+        return "#FFFF00"; // Yellow
+      case "Elmakon":
+        return "#0000FF"; // Blue
+      default:
+        return "#000000"; // Default color (Black)
     }
-    return color;
   }
+
   // LABELS
   const allDates = Array.from(
     new Set(product?.priceHistory?.map((item) => item.date.split("T")[0]))
@@ -111,15 +117,17 @@ const InfoTovar = () => {
       );
       return historyItem ? historyItem.price : null;
     }),
-    backgroundColor: getRandomColor(),
-    borderColor: getRandomColor(),
+    backgroundColor: getColor(storeName),
+    borderColor: getColor(storeName),
     fill: false,
     tension: 0.4,
   }));
+
   const data = {
     labels,
     datasets,
   };
+
   const options = {
     scales: {
       x: {
@@ -134,6 +142,24 @@ const InfoTovar = () => {
     },
   };
   console.log(takeDateGragh);
+
+  const latestPrices = new Map();
+
+  product?.priceHistory?.forEach((item) => {
+    const existing = latestPrices.get(item.storeName);
+    if (!existing || new Date(item.date) > new Date(existing.date)) {
+      latestPrices.set(item.storeName, item);
+    }
+  });
+
+  // Transform the map into the desired array format
+  const result = Array.from(latestPrices?.values()).map((item) => ({
+    store_name: item.storeName,
+    last_price: item.price,
+    product_link: item.productLink,
+  }));
+
+  console.log(result);
 
   return (
     <div className="">
@@ -196,26 +222,30 @@ const InfoTovar = () => {
 
               <Line data={data} options={options}></Line>
 
-              <div className=" flex justify-between items-center mt-2 sm:mt-5 sm:py-1 border px-2">
-                <div className="flex  py-1 gap-2 items-center">
-                  {/* <img
+              {result.map((item) => {
+                return (
+                  <div className=" flex justify-between items-center mt-2 sm:mt-5 sm:py-1 border px-2">
+                    <div className="flex  py-1 gap-2 items-center">
+                      {/* <img
                   src={`https://backendstartup-production-5c5e.up.railway.app/stores/${product?.store_name}`}
                 /> */}
-                  <h3 className=" text-lg sm:text-xl font-medium">
-                    {/* {product?.store_name} */}
-                    {product?.priceHistory[0]?.storeName}
-                  </h3>
-                  <p className=" text-orange-400 text-lg">
-                    {formatPrice2(recentPrice)} so'm
-                  </p>
-                </div>
-                <a
-                  href={product?.priceHistory[0]?.productLink}
-                  className=" py-1 px-4 rounded text-white hover:scale-105 bg-orange-500 text-xs sm:text-base"
-                >
-                  Sotib olish
-                </a>
-              </div>
+                      <h3 className=" text-lg sm:text-xl font-medium">
+                        {/* {product?.store_name} */}
+                        {item?.store_name}
+                      </h3>
+                      <p className=" text-orange-400 text-lg">
+                        {formatPrice2(item?.last_price)} so'm
+                      </p>
+                    </div>
+                    <a
+                      href={item?.product_link}
+                      className=" py-1 px-4 rounded text-white hover:scale-105 bg-orange-500 text-xs sm:text-base"
+                    >
+                      Sotib olish
+                    </a>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

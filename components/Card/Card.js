@@ -128,10 +128,10 @@ function Card({
               height={220}
             />
           </div>
-          <div className="p-2 md:p-4 md:max-w-[260px] border-t-lineColor border-t-1">
+          <div className="p-2 md:p-4 md:max-w-[320px] border-t-lineColor border-t-1">
             <div>
               {/* <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 "> */}
-              <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 max-h-[1.5rem] sm:max-h-[2rem] overflow-hidden text-ellipsis">
+              <h3 className="text-black-text_color text-sm md:text-lg font-bold leading-5 mb-2 h-[2.5rem] sm:h-[3.5rem] overflow-hidden text-ellipsis">
                 {name_uz}
               </h3>
             </div>
@@ -150,7 +150,7 @@ function Card({
             <Link
               href={{
                 pathname: "/infoProduct",
-                query: { product_name: name_uz },
+                query: { product_name: id },
               }}
               className={"text-sm md:text-base col-span-4"}
             >
