@@ -33,6 +33,7 @@ function Header() {
   const [savat, setSavat] = useState([]);
 
   const lang = useSelector((state) => state.data.lang);
+  const setToken = useSelector((state) => state.data.setToken);
   const languages = useSelector((state) => state.data.localization);
   const [golink, setGoLink] = useState("laa");
   const [catalog, setCatalog] = useState(false);
@@ -187,7 +188,7 @@ function Header() {
     });
     setCurrentValue("");
   };
-
+  console.log(setToken, "!!!!!!!!");
   return (
     <header id="header" className=" shadow-sm">
       <div
@@ -196,7 +197,7 @@ function Header() {
         border-b-2 md:border-none"
       >
         <div className="w-full max-w-container mx-auto px-4 py-3.5 sm:py-4">
-          <div className="flex items-center justify-between">
+          <div className="hidden md:flex items-center justify-between">
             <div className="flex items-center">
               <Link href={"/"} onClick={() => dispatch(setCategoryId(""))}>
                 <Image
@@ -216,53 +217,13 @@ function Header() {
                   alt="Site Logo Mobile"
                 />
               </Link>
-              <div className="hidden items-center ml-10 xl:flex space-x-6">
-                <div
-                  onClick={() => setCatalog(!catalog)}
-                  className="z-50  px-5 py-2 rounded-md  category bg-[#ff9d3a] inline-block relative mr-1 pr-4 text-base text-black-black_dark font-medium"
-                  href={"/"}
-                >
-                  <Image
-                    className={` absolute w-5 h-5 mt-0.5`}
-                    src={
-                      catalog
-                        ? "/Assets/Images/HeaderAndHeroImg/Xcatalog.png"
-                        : "/Assets/Images/HeaderAndHeroImg/hamburger.svg"
-                    }
-                    width={9}
-                    height={5}
-                    alt="Drop_img"
-                    priority={true}
-                  />
-                  <h2 className="ml-8">Mahsulotlar katalogi</h2>
-                </div>
-
-                {/* <Link
-                  className="ml-6 text-base text-black-black_dark font-medium"
-                  href={"#populyar"}
-                >
-                  {languages[lang].header.navCategory.item2}
-                </Link>
-                <Link
-                  className="ml-6 text-base text-black-black_dark font-medium"
-                  href={"#noviy"}
-                >
-                  {languages[lang].header.navCategory.item3}
-                </Link>
-                <Link
-                  className="ml-6 text-base text-black-black_dark font-medium"
-                  href={"#skidka"}
-                >
-                  {languages[lang].header.navCategory.item4}
-                </Link> */}
-              </div>
             </div>
             <div className="flex items-center pl-3">
               <form onSubmit={handleSubmit}>
                 <input
                   value={currentValue}
                   id="input-searching"
-                  className="hidden md:inline-block  md:w-[560px] w-[260px] py-2.5 rounded-xl pl-9 outline-none"
+                  className="hidden md:inline-block md:w-[400px]  lg:w-[560px] w-[260px] py-2.5 rounded-xl pl-9 outline-none"
                   type="text"
                   autoComplete="off"
                   placeholder=" Mahsulot qidirish"
@@ -290,20 +251,37 @@ function Header() {
                   />
                 </Link>
               </button>
-              <div className="relative ">
-                <div
-                  onClick={() => setOpenUser(!openUser)}
-                  className="bg-white relative z-50 h-11 w-11 md:flex  language-wrap hidden cursor-pointer sm:flex ml-5 items-center justify-between  rounded-xl"
-                >
-                  <Image
-                    priority={true}
-                    className=" w-6 h-6 mx-auto"
-                    src={"/Assets/Images/HeaderAndHeroImg/user.svg"}
-                    width={28}
-                    height={20}
-                    alt="Flag Russia"
-                  />
-                </div>
+              <div className="relative">
+                {setToken ? (
+                  <div
+                    onClick={() => setOpenUser(!openUser)}
+                    className="bg-white relative z-50 h-11 w-11 flex items-center justify-between cursor-pointer rounded-xl ml-5"
+                  >
+                    <Image
+                      priority={true}
+                      className="w-6 h-6 mx-auto"
+                      src={"/Assets/Images/HeaderAndHeroImg/user.svg"}
+                      width={28}
+                      height={20}
+                      alt="User Icon"
+                    />
+                  </div>
+                ) : (
+                  <div className="hidden lg:flex items-center gap-5 ml-10">
+                    {/* Setup Button */}
+                    <button className="px-6 py-2 text-sm md:text-lg hover:border-orange-500 border rounded-lg shadow-md border-transparent leading-7 font-semibold text-[#FA7426] transition duration-300">
+                      Kirish
+                    </button>
+                    <Link
+                      href={"/auth"}
+                      className="px-6 py-2 text-xs md:text-base text-white bg-[#FA7426] hover:bg-gray-100 hover:text-[#222222] border-2 border-[#FA7426] rounded-lg shadow-md  duration-300"
+                    >
+                      Ro'yxatdan o'tish
+                    </Link>
+
+                    {/* Login Button */}
+                  </div>
+                )}
               </div>
 
               <button className="hidden cursor-pointer md:inline-block ml-3 xl:hidden">
