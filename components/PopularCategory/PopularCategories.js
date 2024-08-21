@@ -213,7 +213,7 @@ function PopularCategories() {
             src={Oppo}
             alt="Oppo"
             className="sm:w-16 w-8 h-8 sm:h-12 rounded-md sm:p-2 p-1"
-            width={48}
+            width={64}
             height={48}
           />
           <h4 className="font-semibold text-[#7a7a7a] pr-3 text-sm sm:text-base">

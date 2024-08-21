@@ -10,6 +10,7 @@ import {
   setCategoryId,
 } from "../../redux/siteDataReducer";
 import LeftSidebar from "./LeftSideBar";
+import Logos1 from "../../public/Assets/Images/HeaderAndHeroImg/logos1.png";
 
 const env = process.env.NEXT_PUBLIC_TOKEN;
 
@@ -143,7 +144,7 @@ function Header() {
   }
 
   const handleChange = (evt) => {
-    console.log(evt.target.value);
+    // console.log(evt.target.value);
     setCurrentValue(evt.target.value);
   };
 
@@ -188,7 +189,7 @@ function Header() {
     });
     setCurrentValue("");
   };
-  console.log(setToken, "!!!!!!!!");
+  // console.log(setToken, "!!!!!!!!");
   return (
     <header id="header" className=" shadow-sm">
       <div
@@ -202,18 +203,18 @@ function Header() {
               <Link href={"/"} onClick={() => dispatch(setCategoryId(""))}>
                 <Image
                   priority={true}
-                  className="w-40 h-[50px] hidden sm:inline-block"
-                  src={"/Assets/Images/HeaderAndHeroImg/logos1.png"}
-                  width={200}
-                  height={50}
+                  className="w-40 h-12 hidden sm:block"
+                  src={Logos1}
+                  width={"auto"}
+                  height="auto"
                   alt="Site Logo"
                 />
                 <Image
                   priority={true}
-                  className="w-20 h-[50px] sm:hidden"
-                  src={"/Assets/Images/HeaderAndHeroImg/logos1.png"}
-                  width={150}
-                  height={14}
+                  className="w-20 h-12 sm:hidden"
+                  src={Logos1}
+                  width={"auto"}
+                  height="auto"
                   alt="Site Logo Mobile"
                 />
               </Link>
@@ -378,7 +379,6 @@ function Header() {
         <form className="w-full" onSubmit={handleSubmit}>
           <input
             value={currentValue}
-            id="input-searching"
             className="w-full ml-2 max-w-inputWidth py-2 sm:py-3 rounded-xl pl-9 sm:pl-9 outline-none"
             type="text"
             autoComplete="off"
@@ -419,10 +419,10 @@ function Header() {
           >
             <Image
               priority="true"
-              className=" w-[150px] h-[40px]"
-              src={"/Assets/Images/HeaderAndHeroImg/logos1.png"}
-              width={150}
-              height={14}
+              className=" w-36 h-10"
+              src={Logos1}
+              width={"auto"}
+              height="auto"
               alt="Menu Bar Logo"
             />
           </Link>

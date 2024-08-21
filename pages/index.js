@@ -24,7 +24,7 @@ export default function Home() {
       dispatch(setTokenUser(storedToken));
     }
   }, []);
-  console.log(token1);
+  // console.log(token1);
   return (
     <>
       <Head>

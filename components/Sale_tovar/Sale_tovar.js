@@ -677,7 +677,7 @@ const Sale_nov = ({ cartItems, onAdd, onRemove }) => {
         setLoader(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setLoader(false);
       });
   }, [productSize]);

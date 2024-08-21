@@ -180,7 +180,7 @@ import Link from "next/link";
 import StarIcon from "../../public/Assets/Images/news/star.png";
 import ReviewIcon from "../../public/Assets/Images/news/review.png";
 import HeartIcon from "../../public/Assets/Images/news/heart.png";
-import HeartIconFilled from "../../public/Assets/Images/news/heart.png";
+// import HeartIconFilled from "../../public/Assets/Images/news/heart.png";
 
 const img = process.env.NEXT_PUBLIC_IMG;
 
@@ -228,7 +228,8 @@ function Card({
             className="absolute top-2 right-2 cursor-pointer z-40"
           >
             <Image
-              src={liked ? HeartIconFilled : HeartIcon}
+              className="w-6 h-6"
+              src={HeartIcon}
               alt="Like"
               width={24}
               height={24}
@@ -257,7 +258,13 @@ function Card({
         <div className="p-2 md:p-4 md:max-w-[320px]  border-t-lineColor border-t-1">
           {/* Review Section */}
           <div className="flex items-center justify-start mb-2">
-            <Image src={ReviewIcon} alt="Review" width={18} height={18} />
+            <Image
+              className="w-[18px] h-[18px]"
+              src={ReviewIcon}
+              alt="Review"
+              width={18}
+              height={18}
+            />
             <span className="text-sm md:text-base text-[#696969] mx-1">
               Reviews
             </span>

@@ -22,7 +22,7 @@ export default function SearchProduct({ data }) {
   const [products, setProducts] = useState([]);
   const [loader, setLoader] = useState(true);
   const router = useRouter();
-  console.log(router.query.keyword);
+  // console.log(router.query.keyword);
   // const location = useLocation();
   const search = useSelector((state) => state.data.search);
   const lang = useSelector((state) => state.data.lang);
@@ -95,7 +95,7 @@ export default function SearchProduct({ data }) {
         setProducts(res?.data?.object);
         setTotalPage(res?.data?.totalPages);
         setLoader(false);
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => console.log(err));
   }, [router, currentPage, filterPrice]);
@@ -103,7 +103,7 @@ export default function SearchProduct({ data }) {
   const handleClicked = () => {
     setFiltersPrice(!filterPrice);
     setLoader(true);
-    console.log(priceRange);
+    // console.log(priceRange);
   };
 
   let arrayItem = [];

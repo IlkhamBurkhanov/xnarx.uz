@@ -76,7 +76,7 @@ const InfoTovar = () => {
         setRecentPrice(res?.data?.priceHistory[0]?.price);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, [router]);
   // console.log(productId);
@@ -99,11 +99,11 @@ const InfoTovar = () => {
   const allDates = Array.from(
     new Set(product?.priceHistory?.map((item) => item.date.split("T")[0]))
   ).sort();
-  console.log(allDates);
+  // console.log(allDates);
 
   // Resulting labels
   const labels = allDates;
-  console.log(labels);
+  // console.log(labels);
 
   // Group data by storeName
   const datasets = Array.from(
@@ -141,7 +141,7 @@ const InfoTovar = () => {
       },
     },
   };
-  console.log(takeDateGragh);
+  // console.log(takeDateGragh);
 
   const latestPrices = new Map();
 
@@ -159,7 +159,7 @@ const InfoTovar = () => {
     product_link: item.productLink,
   }));
 
-  console.log(result);
+  // console.log(result);
 
   return (
     <div className="">
@@ -222,9 +222,12 @@ const InfoTovar = () => {
 
               <Line data={data} options={options}></Line>
 
-              {result.map((item) => {
+              {result.map((item, key) => {
                 return (
-                  <div className=" flex justify-between items-center mt-2 sm:mt-5 sm:py-1 border px-2">
+                  <div
+                    key={key}
+                    className=" flex justify-between items-center mt-2 sm:mt-5 sm:py-1 border px-2"
+                  >
                     <div className="flex  py-1 gap-2 items-center">
                       {/* <img
                   src={`https://backendstartup-production-5c5e.up.railway.app/stores/${product?.store_name}`}

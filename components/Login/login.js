@@ -114,8 +114,8 @@ export default function Login() {
     const token = "example-token-from-api"; // Assume this comes from an API response
     if (typeof window !== "undefined") {
       localStorage.setItem("token", token);
-      console.log("Token saved to localStorage");
-      console.log("saved");
+      // console.log("Token saved to localStorage");
+      // console.log("saved");
     }
     // setRedirect(true);
     router.push("/");
