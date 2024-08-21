@@ -13,6 +13,7 @@ import Phone from "../../public/Assets/Images/news/Phone1.png";
 import Phone2 from "../../public/Assets/Images/news/Phone2.png";
 
 import ButtonMain from "../../public/Assets/Images/news/Button.png";
+import Link from "next/link";
 
 // const lang = useSelector((state) => state.data.lang);
 // const languages = useSelector((state) => state.data.localization);
@@ -41,12 +42,18 @@ const Sample = () => {
                   </p>
                   <div className="flex gap-5 p-8 mt-8">
                     {/* Setup Button */}
-                    <button className="px-10 py-3 font-medium text-[#181717] bg-gray-100 border-1 border-orange-500 rounded-lg shadow-md hover:bg-[#FA7426] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2  transition duration-300">
+                    <Link
+                      href={"/login"}
+                      className="px-10 py-3 font-medium text-[#181717] bg-gray-100 border-1 border-orange-500 rounded-lg shadow-md hover:bg-[#FA7426] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2  transition duration-300"
+                    >
                       Kirish
-                    </button>
-                    <button className="px-10 py-3 text-white bg-[#FA7426] hover:bg-gray-100 hover:text-[#222222] border-2 border-[#FA7426] rounded-lg shadow-md  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FA7426] transition duration-300">
+                    </Link>
+                    <Link
+                      href={"/setup-user"}
+                      className="px-10 py-3 text-white bg-[#FA7426] hover:bg-gray-100 hover:text-[#222222] border-2 border-[#FA7426] rounded-lg shadow-md  "
+                    >
                       Ro'yxatdan o'tish
-                    </button>
+                    </Link>
 
                     {/* Login Button */}
                   </div>

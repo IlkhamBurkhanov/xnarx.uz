@@ -6,7 +6,7 @@ import Image from "next/image";
 function Magazines() {
   return (
     <>
-      <div className="mt-5 sm:mt-7 md:mt-[90px] sm:mx-14 mx-5 ">
+      <div className="mt-10 sm:mt-7 md:mt-[90px] sm:mx-14 mx-5 ">
         <div className="flex justify-around items-center lg:gap-10 sm:gap-5 gap-2">
           {/* <h2 className=" hidden sm:block w-full text-center text-orange-500  font-medium border-b-2 border-orange-500 text-xs sm:text-lg py-1 ">
             Magazinlar:

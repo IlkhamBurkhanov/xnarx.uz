@@ -269,11 +269,14 @@ function Header() {
                 ) : (
                   <div className="hidden lg:flex items-center gap-5 ml-10">
                     {/* Setup Button */}
-                    <button className="px-6 py-2 text-sm md:text-lg hover:border-orange-500 border rounded-lg shadow-md border-transparent leading-7 font-semibold text-[#FA7426] transition duration-300">
-                      Kirish
-                    </button>
                     <Link
-                      href={"/auth"}
+                      href={"/login"}
+                      className="px-6 py-2 text-sm md:text-lg hover:border-orange-500 border rounded-lg shadow-md border-transparent leading-7 font-semibold text-[#FA7426] transition duration-300"
+                    >
+                      Kirish
+                    </Link>
+                    <Link
+                      href={"/setup-user"}
                       className="px-6 py-2 text-xs md:text-base text-white bg-[#FA7426] hover:bg-gray-100 hover:text-[#222222] border-2 border-[#FA7426] rounded-lg shadow-md  duration-300"
                     >
                       Ro'yxatdan o'tish
@@ -424,72 +427,7 @@ function Header() {
             />
           </Link>
 
-          <div className="h-[100vh] overflow-y-auto pb-[180px]">
-            {Object.entries(categoryGroups).map(
-              ([mainCategory, index], indexAll) => {
-                return (
-                  <div key={indexAll} className=" ">
-                    {" "}
-                    <div
-                      onClick={() =>
-                        toggleCategory(mainCategory, index, indexAll)
-                      }
-                      className={`flex z-50 relative items-center justify-between ${
-                        menuCatOpen ? "" : "border-b-1"
-                      } p-2.5 cursor-pointer`}
-                    >
-                      <div
-                        className={`flex items-center py-2 text-sm font-medium  ${
-                          menuCatOpen && testCatalog == indexAll
-                            ? "text-orange-400"
-                            : "text-black-black_dark"
-                        }`}
-                      >
-                        {mainCategory}
-                      </div>
-                      <Image
-                        className={`w-3 h-2 ${
-                          menuCatOpen && testCatalog == indexAll
-                            ? "-rotate-180 duration-300"
-                            : "rotate-0 duration-300"
-                        }`}
-                        src={"/Assets/Images/HeaderAndHeroImg/drop-img.svg"}
-                        width={9}
-                        height={5}
-                        alt="Drop Down Img"
-                      />
-                    </div>
-                    {testCatalog == indexAll ? (
-                      <ul className=" overflow-y-auto">
-                        {categoryGroups[expandedCategory]?.map(
-                          (subCategory) => {
-                            return (
-                              <li
-                                key={subCategory}
-                                onClick={() => {
-                                  handleSubCategoryClick(subCategory);
-                                }}
-                                className=" flex text-sm text-gray-500 py-1 hover:text-orange-400 pl-12 items-center"
-                              >
-                                <Link
-                                  href={{
-                                    pathname: "/categoryPage",
-                                    query: { category: subCategory },
-                                  }}
-                                >
-                                  {subCategory}
-                                </Link>
-                              </li>
-                            );
-                          }
-                        )}
-                      </ul>
-                    ) : null}
-                  </div>
-                );
-              }
-            )}
-          </div>
+          <div className="h-[100vh] overflow-y-auto pb-[180px]">Hello</div>
         </div>
       </div>
     </header>

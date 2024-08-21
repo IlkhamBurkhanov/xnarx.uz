@@ -7,6 +7,11 @@ import Media from "../../public/Assets/Images/news/Mediapark.jpg";
 import Elmakon from "../../public/Assets/Images/news/Elmakon.png";
 import Idea from "../../public/Assets/Images/news/Idea.png";
 
+import Phone2 from "../../public/Assets/Images/news/Phone2.png";
+
+import ButtonMain from "../../public/Assets/Images/news/Button.png";
+import Link from "next/link";
+
 function Hero() {
   const lang = useSelector((state) => state.data.lang);
   const languages = useSelector((state) => state.data.localization);
@@ -16,8 +21,8 @@ function Hero() {
       <div className="w-full max-w-container mx-auto">
         <div className="bg-gray-bg_main  rounded-3xl flex-col lg:flex-row flex lg:items-center justify-between">
           <div className="w-full max-w-container mx-auto">
-            <div className="bg-gray-bg_main py-3 sm:pl-6 md:py-8 lg:py-10 pl-4 rounded-sectionRadius flex-col lg:flex-row flex lg:items-center justify-between">
-              <div className="w-full lg:w-heroContent pr-4">
+            <div className="bg-gray-bg_main  sm:pl-6 sm:pr-10 pl-4 rounded-sectionRadius flex-col lg:flex-row flex lg:items-center justify-between">
+              <div className="w-full lg:w-heroContent py-3 md:py-8 lg:py-10 pr-4">
                 <div className="flex">
                   <h1 className="font-bold text-2xl sm:text-4xl xl:text-5xl text-black-black_dark mb-4">
                     <span className=" text-orange-400">x</span>nar
@@ -31,6 +36,48 @@ function Hero() {
                 {/* <div className="hidden sm:inline-block">
                   <CallBtn />
                 </div> */}
+              </div>
+              <div className="mt-10 sm:mt-0 p-3">
+                {/* Container for Images */}
+                <div className="flex flex-col items-center">
+                  {/* Phone Image */}
+                  <Image
+                    className="w-[250px] h-[270px] sm:hidden -mb-4 z-40"
+                    id="hero-bg"
+                    src={Phone2}
+                    width={250}
+                    height={270}
+                    alt="Phone"
+                  />
+                  {/* ButtonMain Image */}
+                  <Image
+                    className="w-[300px] h-[60px] sm:hidden z-30"
+                    id="hero-bg"
+                    src={ButtonMain}
+                    width={300}
+                    height={60}
+                    alt="Button Main"
+                  />
+                  {/* Desktop Version */}
+                </div>
+                <div className="hidden sm:flex sm:flex-col sm:items-center sm:justify-center">
+                  <Image
+                    className="w-[250px] h-[270px] -mb-4 z-40"
+                    id="hero-bg"
+                    src={Phone2}
+                    width={250}
+                    height={270}
+                    alt="Phone"
+                  />
+                  <Image
+                    className="w-[300px] h-[60px] z-30"
+                    id="hero-bg"
+                    src={ButtonMain}
+                    width={300}
+                    height={60}
+                    alt="Button Main"
+                  />
+                </div>
               </div>
               {/* <div className="flex justify-end">
                 <div className="grid md:grid-cols-2 grid-cols-4 gap-4 px-10">

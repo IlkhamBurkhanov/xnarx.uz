@@ -423,6 +423,7 @@ const Populyar_nov = ({ cartItems, onAdd, onRemove }) => {
   }, [productSize]);
 
   const handleShowMore = () => {
+    setLoader(true);
     if (showMore) {
       setProductSize(productSize - 10);
     } else {
@@ -433,7 +434,7 @@ const Populyar_nov = ({ cartItems, onAdd, onRemove }) => {
 
   return (
     <section id="populyar" className="sm:mx-2 bg-white pl-4 mt-5 md:pt-8">
-      <h2 className="font-bold text-xl md:text-2xl leading-36 pl-3 md:pl-14">
+      <h2 className="font-bold text-black-black_thin text-xl md:text-2xl leading-36 pl-3 md:pl-14">
         Smartfonlar
       </h2>
       <div className="sm:mx-10 mx-auto">
@@ -470,20 +471,10 @@ const Populyar_nov = ({ cartItems, onAdd, onRemove }) => {
         )}
       </div>
       {tovar.length > 0 && (
-        <div className="flex justify-center mt-4">
-          <Button onClick={handleShowMore}>
-            {showMore
-              ? lang === "ru"
-                ? "Показать меньше"
-                : lang === "en"
-                ? "Show Less"
-                : "Kamroq ko'rsatish"
-              : lang === "ru"
-              ? "Показать больше"
-              : lang === "en"
-              ? "Show More"
-              : "Ko'proq ko'rsatish"}
-          </Button>
+        <div className="flex justify-end mt-4 text-lg font-semibold mr-10 md:mx-20 hover:text-[#ec5f0e] px-5">
+          <button onClick={handleShowMore}>
+            {showMore ? "Show less" : "Show more"}
+          </button>
         </div>
       )}
     </section>

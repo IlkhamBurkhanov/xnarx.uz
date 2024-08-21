@@ -4,8 +4,6 @@ import Products from "../components/Products/Products";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
-import Login from "../components/Login/login";
-import Auth from "./auth";
 import { useRouter } from "next/router";
 import Sample from "../components/Sample/Sample";
 import { useSelector, useDispatch } from "react-redux";

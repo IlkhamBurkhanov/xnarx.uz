@@ -101,7 +101,28 @@
 // pages/login.js
 import Image from "next/image";
 
+import { useState } from "react";
+import { useRouter } from "next/router";
+
 export default function Login() {
+  const router = useRouter();
+
+  function handleSubmit() {
+    // event.preventDefault(); // Prevent the default form submission
+
+    // Example logic to handle form data, set the token, etc.
+    const token = "example-token-from-api"; // Assume this comes from an API response
+    if (typeof window !== "undefined") {
+      localStorage.setItem("token", token);
+      console.log("Token saved to localStorage");
+      console.log("saved");
+    }
+    // setRedirect(true);
+    router.push("/");
+
+    // window.location.reload();
+  }
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4 md:mt-10">
       <div className="w-full max-w-[720px] p-6 sm:p-10 shadow-2xl space-y-8 bg-white rounded-2xl">
@@ -163,7 +184,8 @@ export default function Login() {
           </div>
           <div>
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               className="w-full px-4 py-2 text-sm font-medium text-white bg-[#FA7426] border border-transparent rounded-xl shadow-sm hover:bg-[#ee6a1d] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Login
