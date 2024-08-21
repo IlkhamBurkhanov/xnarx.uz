@@ -433,18 +433,18 @@ const Populyar_nov = ({ cartItems, onAdd, onRemove }) => {
   };
 
   return (
-    <section id="populyar" className="sm:mx-2 bg-white pl-1 mt-5 md:pt-8">
+    <section id="populyar" className="sm:mx-2 bg-white pl-4 mt-5 md:pt-8">
       <h2 className="font-bold text-black-black_thin text-xl md:text-2xl leading-36 pl-3 md:pl-14">
         Smartfonlar
       </h2>
-      <div className="sm:mx-10">
+      <div className="sm:mx-10 mx-auto">
         {loader ? (
           <div className="w-full h-[80px] md:h-[200px] flex items-center justify-center">
             <Spinner />
           </div>
         ) : (
           <div className="flex justify-center">
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-5 gap-2 max-w-screen-xl">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 max-w-screen-xl">
               {tovar?.map((el, index) => (
                 <Card
                   key={el?.id}
