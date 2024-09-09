@@ -103,8 +103,13 @@ import Image from "next/image";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function Login() {
+  // const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   function handleSubmit() {
@@ -122,11 +127,42 @@ export default function Login() {
 
     // window.location.reload();
   }
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    setErrorMessage(""); // Clear previous error message
+
+    try {
+      const response = await axios.post(
+        "http://194.31.52.65:8080/api/auth/authenticate",
+        {
+          email,
+          password,
+        }
+      );
+
+      if (response.data.access_token) {
+        // Store the tokens in localStorage
+        localStorage.setItem("access_token", response.data.access_token);
+        localStorage.setItem("refresh_token", response.data.refresh_token);
+
+        // Redirect to a secure page (dashboard or home)
+        router.push("/"); // Change to your route
+      }
+    } catch (error) {
+      // Handle errors (e.g., wrong email or password)
+      setErrorMessage("Email or password is wrong");
+    }
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4 md:mt-10">
       <div className="w-full max-w-[720px] p-6 sm:p-10 shadow-2xl space-y-8 bg-white rounded-2xl">
         <h2 className="text-3xl font-bold text-center text-[#222222]">Login</h2>
+        {errorMessage && (
+          <div className="bg-red-100 text-red-700 p-2 rounded mb-4">
+            {errorMessage}
+          </div>
+        )}
         <form className="space-y-6">
           <div>
             <label
@@ -139,6 +175,8 @@ export default function Login() {
               id="email"
               name="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               className="block outline-none w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
@@ -154,6 +192,8 @@ export default function Login() {
               id="password"
               name="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               className="block outline-none w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
@@ -185,7 +225,7 @@ export default function Login() {
           <div>
             <button
               type="button"
-              onClick={handleSubmit}
+              onClick={handleSignIn}
               className="w-full px-4 py-2 text-sm font-medium text-white bg-[#FA7426] border border-transparent rounded-xl shadow-sm hover:bg-[#ee6a1d] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Login

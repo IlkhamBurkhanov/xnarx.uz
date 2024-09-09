@@ -12,6 +12,7 @@ import { setTokenUser } from "../redux/siteDataReducer";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const categoryId = true;
   const [data, setData] = useState([]);
@@ -19,11 +20,11 @@ export default function Home() {
   useEffect(() => {
     // Check if window object is defined (client-side)
     if (typeof window !== "undefined") {
-      const storedToken = localStorage.getItem("token");
+      const storedToken = localStorage.getItem("access_token");
       setToken1(storedToken);
       dispatch(setTokenUser(storedToken));
     }
-  }, []);
+  }, [router]);
   // console.log(token1);
   return (
     <>

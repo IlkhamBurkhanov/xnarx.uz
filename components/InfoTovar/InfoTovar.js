@@ -43,6 +43,7 @@ import "swiper/css/scrollbar";
 import "swiper/css";
 import { useSelector } from "react-redux";
 import { Spinner } from "../Spinner/Spinner";
+import ProductDetails from "../ProductDetails/ProductDetails";
 
 const env = process.env.NEXT_PUBLIC_TOKEN;
 const img = process.env.NEXT_PUBLIC_IMG;
@@ -54,12 +55,13 @@ const InfoTovar = () => {
   const [recentPrice, setRecentPrice] = useState([]);
   const [loader, setLoader] = useState(true);
   const [takeDateGragh, setTakeDateGragh] = useState([]);
+  const [xDeatails, setXDetails] = useState(null);
 
   const [productImageUrl, setProductImageUrl] = useState("");
   const [priceHistoryByStore, setPriceHistoryByStore] = useState({});
   const router = useRouter();
 
-  const productUrl = `${env}product/getAllPH?product_name=${router.query.product_name}`;
+  // const productUrl = `${env}product/getAllPH?product_name=${router.query.product_name}`;
 
   const formatPrice2 = (price) => {
     const formattedPrice = parseFloat(price).toFixed(0);
@@ -67,13 +69,14 @@ const InfoTovar = () => {
   };
   useEffect(() => {
     axios
-      .get(`${env}product/search?productId=${router.query.product_name}`)
+      .get(`${env}product/search/${router.query.product_name}`)
       .then((res) => {
         setLoader(false);
         // console.log(res?.data?.priceHistory);
         setProduct(res?.data);
         setTakeDateGragh(res?.data?.priceHistory);
         setRecentPrice(res?.data?.priceHistory[0]?.price);
+        setXDetails(res?.data?.characteristics ? true : false);
       })
       .catch((err) => {
         // console.log(err);
@@ -161,6 +164,30 @@ const InfoTovar = () => {
 
   // console.log(result);
 
+  const productss = {
+    id: 1,
+    productName: "Xiaomi redmi note 10 pro india 8/128",
+    productImage: "Xiaomi_redmi_note_10_pro_india_8128.jpg",
+    categoryName: "Smartfonlar",
+    priceHistory: [
+      {
+        id: 1,
+        storeName: "Mediapark",
+        productLink:
+          "https://mediapark.uz/products/view/smartfon-xiaomi-redmi-note-10-pro-india-8-128-blue-26462",
+        price: 4467000,
+        date: "2024-08-16T00:00:00.000+05:00",
+        product: null,
+      },
+    ],
+    characteristics: {
+      id: 112,
+      name: "xiaomi redmi note 10",
+      details:
+        '{"Network": {"Technology": "GSM / HSPA / LTE", "2G bands": "GSM 850 / 900 / 1800 / 1900 - SIM 1 & SIM 2", "3G bands": "HSDPA 850 / 900 / 1700(AWS) / 1900 / 2100 - International", "": "1, 3, 5, 8, 40, 41 - India", "4G bands": "1, 2, 3, 4, 5, 7, 8, 20, 28, 38, 40, 41 - International", "Speed": "HSPA, LTE (CA)"}, "Launch": {"Announced": "2021, March 04", "Status": "Available. Released 2021, March 16"}, "Body": {"Dimensions": "160.5 x 74.5 x 8.3 mm (6.32 x 2.93 x 0.33 in)", "Weight": "178.8 g (6.31 oz)", "Build": "Glass front (Gorilla Glass 3), plastic back, plastic frame", "SIM": "Dual SIM (Nano-SIM, dual stand-by)", "": "IP53, dust and splash resistant (market/region dependent)"}, "Display": {"Type": "Super AMOLED, 450 nits (typ), 1100 nits (peak)", "Size": "6.43 inches, 99.8 cm 2  (~83.5% screen-to-body ratio)", "Resolution": "1080 x 2400 pixels, 20:9 ratio (~409 ppi density)", "Protection": "Corning Gorilla Glass 3"}, "Platform": {"OS": "Android 11, upgradable to Android 12, MIUI 14", "Chipset": "Qualcomm SDM678 Snapdragon 678 (11 nm)", "CPU": "Octa-core (2x2.2 GHz Kryo 460 Gold & 6x1.7 GHz Kryo 460 Silver)", "GPU": "Adreno 612"}, "Memory": {"Card slot": "microSDXC (dedicated slot)", "Internal": "64GB 4GB RAM, 128GB 4GB RAM, 128GB 6GB RAM", "": "UFS 2.2"}}',
+    },
+  };
+
   return (
     <div className="">
       {loader ? (
@@ -222,35 +249,26 @@ const InfoTovar = () => {
 
               <Line data={data} options={options}></Line>
 
-              {result.map((item, key) => {
-                return (
-                  <div
-                    key={key}
-                    className=" flex justify-between items-center mt-2 sm:mt-5 sm:py-1 border px-2"
-                  >
-                    <div className="flex  py-1 gap-2 items-center">
-                      {/* <img
-                  src={`https://backendstartup-production-5c5e.up.railway.app/stores/${product?.store_name}`}
-                /> */}
-                      <h3 className=" text-lg sm:text-xl font-medium">
-                        {/* {product?.store_name} */}
-                        {item?.store_name}
-                      </h3>
-                      <p className=" text-orange-400 text-lg">
-                        {formatPrice2(item?.last_price)} so'm
-                      </p>
-                    </div>
-                    <a
-                      href={item?.product_link}
-                      className=" py-1 px-4 rounded text-white hover:scale-105 bg-orange-500 text-xs sm:text-base"
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {result.map((item, key) => {
+                  return (
+                    <div
+                      key={key}
+                      className="mt-2 sm:mt-5 sm:py-2 rounded-xl text-lg border px-4 text-center bg-[#FA7426] text-white"
                     >
-                      Sotib olish
-                    </a>
-                  </div>
-                );
-              })}
+                      <Link href={item?.product_link}>
+                        {item?.store_name}{" "}
+                        <span className=" text-xl ml-2">
+                          {formatPrice2(item?.last_price)}
+                        </span>{" "}
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
+          {xDeatails ? <ProductDetails product={product} /> : null}
         </div>
       )}
     </div>

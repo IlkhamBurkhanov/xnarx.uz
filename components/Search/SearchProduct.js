@@ -86,10 +86,11 @@ export default function SearchProduct({ data }) {
   };
   useEffect(() => {
     setLoader(true);
+    //194.31.52.65:8080/api/product/search?name=Iphone&minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10
     // http://194.31.52.65:8080/api/product/search/artel?minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10
-    axios
+    http: axios
       .get(
-        `${env}product/search/${router.query.keyword}?&minPrice=${priceRange.min}&maxPrice=${priceRange.max}&orderType=True&page=${currentPage}&size=15`
+        `${env}product/search?name=${router.query.keyword}&minPrice=${priceRange.min}&maxPrice=${priceRange.max}&orderType=True&page=${currentPage}&size=15`
       )
       .then((res) => {
         setProducts(res?.data?.object);

@@ -58,7 +58,7 @@ const Footer = () => {
   // }, []);
 
   return (
-    <footer id="contact" className="w-full bg-gray-bg_main mt-11">
+    <footer id="contact" className="w-full bg-gray-bg_main pt-11">
       <div className="max-w-container w-full mx-auto pt-14 px-5 ">
         <div className="sm:grid sm:grid-cols-2 sm:gap-y-10 tablet:flex tablet:justify-between pb-4 ">
           <div className="max-w-281 w-full">
