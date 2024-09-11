@@ -309,7 +309,7 @@ export default function Setup() {
               </p>
               <div className="border-t w-1/4 border-gray-500"></div>
             </div>
-            <button
+            {/* <button
               type="submit"
               className="w-full flex justify-center items-center gap-2 mt-3 px-4 py-3 text-sm font-medium border-2 border-gray-500 rounded-xl shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
@@ -322,7 +322,7 @@ export default function Setup() {
                 priority="true"
               />
               <p>Setup with Google</p>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
