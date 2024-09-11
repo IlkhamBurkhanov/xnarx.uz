@@ -83,6 +83,13 @@ const InfoTovar = () => {
       });
   }, [router]);
   // console.log(productId);
+
+  function getRoundedValue(price) {
+    if (price >= 1000000) return 800000; // Example logic for higher prices
+    return (Math.floor(price / 100000) * 100000) / 2; // For lower prices, round to half
+  }
+  const halfMinPrice = getRoundedValue(recentPrice); // Get the rounded half of the min price
+
   function getColor(storeName) {
     switch (storeName) {
       case "Mediapark":
@@ -140,7 +147,11 @@ const InfoTovar = () => {
         },
       },
       y: {
-        beginAtZero: true,
+        beginAtZero: false,
+        min: halfMinPrice,
+        ticks: {
+          maxTicksLimit: 5,
+        },
       },
     },
   };
