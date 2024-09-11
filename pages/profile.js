@@ -55,7 +55,7 @@ export default function Profile() {
         </div>
 
         {/* User Info and Edit Button */}
-        <div className="flex justify-between items-center mb-10">
+        <div className="sm:flex flex-col justify-between items-center mb-10">
           {/* User Info */}
           <div className="flex items-center space-x-4">
             <Image
@@ -76,7 +76,7 @@ export default function Profile() {
           {/* Edit/Save Button */}
           <button
             onClick={handleEditToggle}
-            className={`${
+            className={`mt-5 sm:mt-0 ${
               isEditing ? "bg-green-500" : "bg-orange-500"
             } text-white px-6 py-2 rounded-lg hover:opacity-90 transition-colors`}
           >

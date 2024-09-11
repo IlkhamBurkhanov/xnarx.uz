@@ -384,7 +384,55 @@ function Header() {
             />
           </Link>
 
-          <div className="h-[100vh] overflow-y-auto pb-[180px]">Hello</div>
+          <div className="h-[100vh] overflow-y-auto pb-[180px]">
+            {setToken ? (
+              <ul className="flex flex-col gap-2">
+                <li>
+                  <Link
+                    href="/profile"
+                    onClick={() => setClickMenu(false)}
+                    className="font-medium text-[#FA7426] hover:underline"
+                  >
+                    Profile Page
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      setClickMenu(false);
+                      deleteToken();
+                    }}
+                    className="font-medium text-[#FA7426] hover:underline"
+                  >
+                    Exit
+                  </button>
+                </li>
+              </ul>
+            ) : (
+              <ul className="flex flex-col gap-2">
+                <li>
+                  <Link
+                    href="/login"
+                    onClick={() => setClickMenu(false)}
+                    className="font-medium text-[#FA7426] hover:underline"
+                  >
+                    Kirish
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/setup-user"
+                    onClick={() => {
+                      setClickMenu(false);
+                    }}
+                    className="font-medium text-[#FA7426] hover:underline"
+                  >
+                    Ro'yxatdan o'tish
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </div>
         </div>
       </div>
     </header>
