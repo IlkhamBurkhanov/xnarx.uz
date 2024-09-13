@@ -1,34 +1,95 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Avatar from "../public/Assets/Images/news/avatar.png";
+import axios from "axios";
 
 export default function Profile() {
-  // Simulate user data (In real case, fetch this from an API)
-  const [user, setUser] = useState({
-    firstName: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    phone: "+123 456 789",
-    address: "123 Main St, City, Country",
-    password: "password123",
-    joinDate: "Tue, July 07, 2024",
-    username: "johndoe",
-  });
-
+  const [userData, setUserData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const API_URL = "http://194.31.52.65:8080/api/user/info";
 
-  const handleEditToggle = () => {
-    setIsEditing(!isEditing);
+  // Retrieve userId from localStorage
+
+  // const UPDATE_API_URL = `http://194.31.52.65:8080/api/user/enable/${userId}`;
+
+  useEffect(() => {
+    (async () => {
+      try {
+        // Retrieve the access token from localStorage
+        const token = localStorage.getItem("access_token");
+
+        if (!token) {
+          console.log("No access token found");
+          return;
+        }
+
+        // Configure the request with the Authorization header
+        const response = await axios.get(
+          `http://194.31.52.65:8080/api/user/info`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // Set the response data to the state
+        setUserData(response?.data);
+        console.log(response?.data);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    })();
+  }, []);
+
+  const handleEditToggle = async () => {
+    if (isEditing) {
+      // Save the changes when 'Save' is clicked
+      try {
+        const token = localStorage.getItem("access_token");
+        const userId = localStorage.getItem("userId");
+
+        if (!token) {
+          console.log("No access token found");
+          return;
+        }
+
+        // Update the user data
+        await axios.put(
+          `http://194.31.52.65:8080/api/user/enable/${userId}`,
+          userData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // Re-fetch updated data
+        const response = await axios.get(API_URL, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setUserData(response?.data);
+        console.log("User details updated successfully!");
+      } catch (error) {
+        console.error("Error updating user details:", error);
+      }
+    }
+    setIsEditing(!isEditing); // Toggle between editing and saving
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUser((prevUser) => ({
-      ...prevUser,
+    setUserData((prevData) => ({
+      ...prevData,
       [name]: value,
     }));
   };
+  console.log(userData);
 
   return (
     <div className="relative min-h-screen pb-20 bg-gray-100">
@@ -51,11 +112,11 @@ export default function Profile() {
           <h2 className="text-3xl font-semibold text-orange-500">
             Welcome to Xnarx
           </h2>
-          <p className="text-gray-400">{user.joinDate}</p>
+          <p className="text-gray-400">{userData?.createdDate}</p>
         </div>
 
         {/* User Info and Edit Button */}
-        <div className="sm:flex flex-col justify-between items-center mb-10">
+        <div className="sm:flex flex flex-col sm:flex-row sm:justify-between sm:items-center mb-10">
           {/* User Info */}
           <div className="flex items-center space-x-4">
             <Image
@@ -67,9 +128,9 @@ export default function Profile() {
             />
             <div>
               <h2 className="text-2xl font-bold text-gray-800">
-                {user.firstName} {user.lastName}
+                {userData?.firstName} {userData?.lastName}
               </h2>
-              <p className="text-gray-500 text-lg">{user.email}</p>
+              <p className="text-gray-500 text-lg">{userData?.email}</p>
             </div>
           </div>
 
@@ -96,7 +157,7 @@ export default function Profile() {
               <input
                 type="text"
                 name="firstName"
-                value={user.firstName}
+                value={userData?.firstName}
                 onChange={handleInputChange}
                 disabled={!isEditing}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-100 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -110,7 +171,7 @@ export default function Profile() {
               <input
                 type="text"
                 name="lastName"
-                value={user.lastName}
+                value={userData?.lastName}
                 onChange={handleInputChange}
                 disabled={!isEditing}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-100 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -126,7 +187,7 @@ export default function Profile() {
               <input
                 type="email"
                 name="email"
-                value={user.email}
+                value={userData?.email}
                 onChange={handleInputChange}
                 disabled={!isEditing}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-100 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -138,7 +199,7 @@ export default function Profile() {
               <input
                 type="text"
                 name="phone"
-                value={user.phone}
+                value={userData?.phone}
                 onChange={handleInputChange}
                 disabled={!isEditing}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-100 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -154,7 +215,7 @@ export default function Profile() {
               <input
                 type="text"
                 name="address"
-                value={user.address}
+                value={userData?.address}
                 onChange={handleInputChange}
                 disabled={!isEditing}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-100 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -162,14 +223,12 @@ export default function Profile() {
             </div>
             {/* Password */}
             <div>
-              <label className="block text-gray-700 font-medium">
-                Password
-              </label>
+              <label className="block text-gray-700 font-medium">Role</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={user.password}
+                  name="role"
+                  value={userData?.role}
                   disabled={!isEditing}
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-100 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
