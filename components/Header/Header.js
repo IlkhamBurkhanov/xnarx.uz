@@ -126,12 +126,6 @@ function Header() {
   // }, []);
   // console.log(savat?.length);
 
-  useEffect(() => {
-    const token = localStorage.getItem("acccess_token");
-    if (!token) {
-      router.push("/");
-    }
-  }, []);
   const catalogTest = [
     {
       name: "1 chi catalog",

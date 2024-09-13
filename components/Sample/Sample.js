@@ -14,6 +14,7 @@ import Phone2 from "../../public/Assets/Images/news/Phone2.png";
 
 import ButtonMain from "../../public/Assets/Images/news/Button.png";
 import Link from "next/link";
+import Profile from "../../pages/profile";
 
 // const lang = useSelector((state) => state.data.lang);
 // const languages = useSelector((state) => state.data.localization);

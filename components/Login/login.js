@@ -112,21 +112,21 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
-  function handleSubmit() {
-    // event.preventDefault(); // Prevent the default form submission
+  // function handleSubmit() {
+  //   // event.preventDefault(); // Prevent the default form submission
 
-    // Example logic to handle form data, set the token, etc.
-    const token = "example-token-from-api"; // Assume this comes from an API response
-    if (typeof window !== "undefined") {
-      localStorage.setItem("token", token);
-      // console.log("Token saved to localStorage");
-      // console.log("saved");
-    }
-    // setRedirect(true);
-    router.push("/");
+  //   // Example logic to handle form data, set the token, etc.
+  //   const token = "example-token-from-api"; // Assume this comes from an API response
+  //   if (typeof window !== "undefined") {
+  //     localStorage.setItem("token", token);
+  //     // console.log("Token saved to localStorage");
+  //     // console.log("saved");
+  //   }
+  //   // setRedirect(true);
+  //   router.push("/");
 
-    // window.location.reload();
-  }
+  //   // window.location.reload();
+  // }
   const handleSignIn = async (e) => {
     e.preventDefault();
     setErrorMessage(""); // Clear previous error message
@@ -144,6 +144,7 @@ export default function Login() {
         // Store the tokens in localStorage
         localStorage.setItem("access_token", response.data.access_token);
         localStorage.setItem("refresh_token", response.data.refresh_token);
+        localStorage.setItem("userId", response.data.userId);
 
         // Redirect to a secure page (dashboard or home)
         router.push("/"); // Change to your route

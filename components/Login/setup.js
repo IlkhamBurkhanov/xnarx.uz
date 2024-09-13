@@ -209,6 +209,7 @@ export default function Setup() {
         // Store the tokens in localStorage
         localStorage.setItem("access_token", response.data.access_token);
         localStorage.setItem("refresh_token", response.data.refresh_token);
+        localStorage.setItem("userId", response.data.userId);
 
         // Redirect to a secure page (dashboard or home)
         router.push("/"); // Change to your route
