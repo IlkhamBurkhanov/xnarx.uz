@@ -56,15 +56,11 @@ export default function Profile() {
         }
 
         // Update the user data
-        await axios.put(
-          `http://194.31.52.65:8080/api/user/enable/${userId}`,
-          userData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        await axios.put(`http://194.31.52.65:8080/api/user/edit`, userData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         // Re-fetch updated data
         const response = await axios.get(API_URL, {
