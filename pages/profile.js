@@ -36,7 +36,7 @@ export default function Profile() {
 
         // Set the response data to the state
         setUserData(response?.data);
-        console.log(response?.data);
+        // console.log(response?.data);
       } catch (error) {
         console.error("Error fetching user info:", error);
       }
@@ -85,7 +85,7 @@ export default function Profile() {
       [name]: value,
     }));
   };
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <div className="relative min-h-screen pb-20 bg-gray-100">

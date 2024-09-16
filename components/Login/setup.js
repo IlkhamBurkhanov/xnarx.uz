@@ -203,7 +203,7 @@ export default function Setup() {
           enabled: true,
         }
       );
-      console.log(response);
+      // console.log(response);
       if (response.data.access_token) {
         setSuccess("Registration successful");
         // Store the tokens in localStorage
