@@ -267,7 +267,7 @@ const InfoTovar = () => {
                       key={key}
                       className="mt-2 sm:mt-5 sm:py-2 rounded-xl text-lg border px-4 text-center bg-[#FA7426] text-white"
                     >
-                      <Link href={item?.product_link}>
+                      <Link href={item?.product_link} target="_blank">
                         {item?.store_name}{" "}
                         <span className=" text-xl ml-2">
                           {formatPrice2(item?.last_price)}
