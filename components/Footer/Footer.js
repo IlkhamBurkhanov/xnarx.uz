@@ -105,68 +105,8 @@ const Footer = () => {
               )}
             </div>
           </div>
-          <div className=" mt-6 sm:mt-0 hidden mini_phone:block">
-            <p className="text-black-black_dark font-bold text-lg">
-              {languages[lang].footer.linkList.linkListName}
-            </p>
-            <ul className="text-sm text-gray-foot mt-4 tablet:mt-6 h-207 tablet:h-237 flex flex-col justify-between">
-              <li>
-                <Link className="cursor-pointer" href="#">
-                  {languages[lang].footer.linkList.linkItem1}
-                </Link>
-              </li>
-              <li>
-                <Link className="cursor-pointer" href="#">
-                  {languages[lang].footer.linkList.linkItem2}
-                </Link>
-              </li>
-              <li>
-                <Link className="cursor-pointer" href="#">
-                  {languages[lang].footer.linkList.linkItem3}
-                </Link>
-              </li>
-              <li>
-                <Link className="cursor-pointer" href="#">
-                  {languages[lang].footer.linkList.linkItem4}
-                </Link>
-              </li>
-              <li>
-                <Link className="cursor-pointer" href="#">
-                  {languages[lang].footer.linkList.linkItem5}
-                </Link>
-              </li>
-              <li>
-                <Link className="cursor-pointer" href="#">
-                  {languages[lang].footer.linkList.linkItem6}
-                </Link>
-              </li>
-              <li>
-                <Link className="cursor-pointer" href="#">
-                  {languages[lang].footer.linkList.linkItem7}
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="max-w-237 mt-6 sm:mt-0 hidden mini_phone:block">
-            <p className="text-black-black_dark font-bold text-lg">
-              {languages[lang].footer.centerHelp.help}
-            </p>
-            <ul className="text-sm text-gray-foot mt-4 tablet:mt-6 h-83 tablet:h-93 flex flex-col justify-between">
-              <li>
-                <Link href="#">
-                  {languages[lang].footer.centerHelp.delivery}
-                </Link>
-              </li>
-              <li>
-                <Link href="#">
-                  {languages[lang].footer.centerHelp.questions}
-                </Link>
-              </li>
-              <li>
-                <Link href="#">{languages[lang].footer.centerHelp.secret}</Link>
-              </li>
-            </ul>
-          </div>
+          <div className=" mt-6 sm:mt-0 hidden mini_phone:block"></div>
+          <div className="max-w-237 mt-6 sm:mt-0 hidden mini_phone:block"></div>
           {loader ? (
             <div className="flex mx-auto mt-10">
               <Spinner />
