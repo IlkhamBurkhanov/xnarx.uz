@@ -93,6 +93,7 @@ const siteProducts = createSlice({
     categoryId: "",
     productId: 0,
     setToken: null,
+    pageNumber: 0,
   },
   reducers: {
     changeLang: (state, action) => {
@@ -106,6 +107,9 @@ const siteProducts = createSlice({
     },
     searchProduct: (state, action) => {
       state.search = action.payload;
+    },
+    searchPageNumber: (state, action) => {
+      state.pageNumber = action.payload;
     },
     setCategoryId: (state, action) => {
       state.categoryId = action.payload;
@@ -126,6 +130,7 @@ export const {
   setCategoryId,
   setProductId,
   setTokenUser,
+  searchPageNumber,
 } = siteProducts.actions;
 
 export default siteProducts.reducer;

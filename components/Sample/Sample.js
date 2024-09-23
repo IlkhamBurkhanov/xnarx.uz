@@ -34,7 +34,7 @@ const Sample = () => {
                     <h1 className="font-bold text-2xl sm:text-4xl xl:text-5xl text-black-black_dark mb-4">
                       <span className=" text-orange-400">x</span>nar
                       <span className="text-orange-400">x </span>
-                      dan eng arzon va sifatlisi sotib oling
+                      dan arzon va sifatlisi sotib oling
                     </h1>
                   </div>
                   <p className="font-normal text-sm lg:text-base text-black-black_thin mb-3 sm:mb-6y">

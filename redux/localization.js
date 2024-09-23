@@ -22,8 +22,8 @@ const languages = {
       },
     },
     hero: {
-      heading: "dan eng arzon va sifatlisi sotib oling",
-      text: "xnarx-dan eng arzon tovarlar - bu barcha magazinlardagi mavjud arzon, yuqori sifatli, ishonchli mahsulotlar.",
+      heading: "dan arzon va sifatlisi sotib oling",
+      text: "xnarx-dan arzon tovarlar - bu barcha magazinlardagi mavjud arzon, yuqori sifatli, ishonchli mahsulotlar.",
       button: "Buyurtma berish",
     },
     popular: {
@@ -66,7 +66,7 @@ const languages = {
       text: "Biz bilan bog'lanish uchun bizga telefon raqamingizni va ismingizni yuboring, biz sizga imkon qadar tezroq javob beramiz.",
     },
     footer: {
-      text: "Xnarx-dan eng arzon va sifatli tovarlar - Barchaga qulaylik yaratish uchun, siz qidirayotgan arzon, yuqori sifatli, ishonchli mahsulotlar",
+      text: "Xnarx-dan arzon va sifatli tovarlar - Barchaga qulaylik yaratish uchun, siz qidirayotgan arzon, yuqori sifatli, ishonchli mahsulotlar",
       linkList: {
         linkListName: "foydali havolalar",
         linkItem1: "Mahsulot haqida",
