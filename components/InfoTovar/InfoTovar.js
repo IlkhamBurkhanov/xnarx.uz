@@ -263,17 +263,19 @@ const InfoTovar = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {result.map((item, key) => {
                   return (
-                    <div
+                    <Link
+                      href={item?.product_link}
+                      target="_blank"
                       key={key}
                       className="mt-2 sm:mt-5 sm:py-2 rounded-xl text-lg border px-4 text-center bg-[#FA7426] text-white"
                     >
-                      <Link href={item?.product_link} target="_blank">
+                      <div>
                         {item?.store_name}{" "}
                         <span className=" text-xl ml-2">
                           {formatPrice2(item?.last_price)}
                         </span>{" "}
-                      </Link>
-                    </div>
+                      </div>
+                    </Link>
                   );
                 })}
               </div>
