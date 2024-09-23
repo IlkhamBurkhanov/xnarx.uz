@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "../Card/Card";
-import { setCategoryId } from "../../redux/siteDataReducer";
+import { setCategoryId, searchPageNumber } from "../../redux/siteDataReducer";
 import { useEffect } from "react";
 import axios from "axios";
 import { Spinner } from "../Spinner/Spinner";
@@ -25,10 +25,10 @@ export default function SearchProduct({ data }) {
   // console.log(router.query.keyword);
   // const location = useLocation();
   const search = useSelector((state) => state.data.search);
+  const currentPageNumber = useSelector((state) => state.data.pageNumber);
   const lang = useSelector((state) => state.data.lang);
   const languages = useSelector((state) => state.data.localization);
   const categoryName = useSelector((state) => state.data.categoryId);
-  const dispatch = useDispatch();
   const [heading, setHeading] = useState({});
   const [minValue, set_minValue] = useState(100);
   const [maxValue, set_maxValue] = useState(500);
@@ -37,10 +37,11 @@ export default function SearchProduct({ data }) {
   const [sortBtn, setSortBtn] = useState(false);
   const [filters, setFilters] = useState([]);
   const [totalPage, setTotalPage] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(currentPageNumber);
   const [checked2, setChecked2] = useState(0);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 100000000 });
   const [filterPrice, setFiltersPrice] = useState(true);
+  const dispatch = useDispatch();
 
   const handleInput = (e) => {
     set_minValue(e.minValue);
@@ -114,12 +115,15 @@ export default function SearchProduct({ data }) {
 
   const handleClickItem = (itemy) => {
     setCurrentPage(itemy);
+    console.log(itemy);
+    dispatch(searchPageNumber(itemy));
+
     setLoader(true);
   };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
-
+  console.log(currentPage, currentPageNumber);
   return (
     <section className="mt-7 md:mt-32">
       <div className="max-w-container mx-auto w-full px-5">
