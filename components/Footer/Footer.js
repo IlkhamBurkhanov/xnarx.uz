@@ -20,17 +20,17 @@ const Footer = () => {
     {
       name: "Instagram",
       id: 1,
-      link: "https://www.instagram.com/",
+      link: "https://www.instagram.com/xnarx.uz?igsh=MWF2bm5vNG1tbHAxcw==",
     },
     {
-      name: "Facebook",
+      name: "Telegram",
       id: 2,
-      link: "https://www.facebook.com/",
+      link: "https://t.me/xnarxuz",
     },
     {
-      name: "Twitter",
+      name: "YouTube",
       id: 3,
-      link: "https://twitter.com/",
+      link: "https://youtube.com/@xnarx-user?si=DT-iEn9jcK4ov2Ne",
     },
     {
       name: "Linkedin",
@@ -89,10 +89,10 @@ const Footer = () => {
                       src={
                         item.name === "Instagram"
                           ? `/Assets/Images/FooterSvg/Instagram.svg`
-                          : item.name === "Facebook"
-                          ? `/Assets/Images/FooterSvg/facebook.svg`
-                          : item.name === "Twitter"
-                          ? `/Assets/Images/FooterSvg/Twitter.svg`
+                          : item.name === "Telegram"
+                          ? `/Assets/Images/FooterSvg/Telegram.svg`
+                          : item.name === "YouTube"
+                          ? `/Assets/Images/FooterSvg/YouTube.svg`
                           : `/Assets/Images/FooterSvg/Linkedin.svg`
                       }
                       className="w-9 h-9 hover:scale-105 transition-all"
