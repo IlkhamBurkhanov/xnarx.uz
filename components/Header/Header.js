@@ -151,7 +151,7 @@ function Header() {
       pathname: "/search",
       query: { keyword: currentValue },
     });
-    setCurrentValue("");
+    // setCurrentValue("");
   };
   // console.log(setToken, "!!!!!!!!");
 
