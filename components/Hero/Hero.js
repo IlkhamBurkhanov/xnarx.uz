@@ -31,7 +31,7 @@ function Hero() {
   };
   return (
     <section className="mt-5 ">
-      <div className="mx-10">
+      <div className="lg:mx-10 mx-2">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {/* Slider Section (2/3 width on large screens) */}
           <div className="lg:col-span-2">
@@ -53,8 +53,8 @@ function Hero() {
             </Slider>
           </div>
 
-          {/* Static Images Section (1/3 width on large screens, flex-col on smaller screens) */}
-          <div className="grid grid-rows-2 lg:grid-rows-2 mt-4 lg:-mt-1.5 gap-4">
+          {/* Static Images Section (side by side on mobile, stack vertically on larger screens) */}
+          <div className="grid grid-cols-2 lg:grid-cols-1 mt-4 lg:-mt-1.5 lg:gap-4 gap-1">
             <div className="h-full">
               <img
                 src="/Assets/Images/news/main2.png"
