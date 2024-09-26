@@ -473,7 +473,7 @@ const Tovar_nov = ({ cartItems, onAdd, onRemove }) => {
       {tovar.length > 0 && (
         <div className="flex justify-end mt-4 text-lg font-semibold mr-10 md:mx-20 hover:text-[#ec5f0e] px-5">
           <button onClick={handleShowMore}>
-            {showMore ? "Show less" : "Show more"}
+            {showMore ? "Kamroq" : "Hammasi"}
           </button>
         </div>
       )}
