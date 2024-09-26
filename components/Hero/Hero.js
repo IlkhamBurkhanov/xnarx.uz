@@ -21,7 +21,7 @@ function Hero() {
   const lang = useSelector((state) => state.data.lang);
   const languages = useSelector((state) => state.data.localization);
   const sliderSettings = {
-    dots: true,
+    dots: false,
     // infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -32,7 +32,7 @@ function Hero() {
   return (
     <section className="mt-5 ">
       <div className="lg:mx-10 mx-2">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-4">
           {/* Slider Section (2/3 width on large screens) */}
           <div className="lg:col-span-2">
             <Slider {...sliderSettings}>
@@ -54,7 +54,7 @@ function Hero() {
           </div>
 
           {/* Static Images Section (side by side on mobile, stack vertically on larger screens) */}
-          <div className="grid grid-cols-2 lg:grid-cols-1 mt-4 lg:-mt-1.5 lg:gap-4 gap-1">
+          <div className="grid grid-cols-2 lg:grid-cols-1  lg:-mt-1.5 lg:gap-4 gap-1">
             <div className="h-full">
               <img
                 src="/Assets/Images/news/main2.png"
