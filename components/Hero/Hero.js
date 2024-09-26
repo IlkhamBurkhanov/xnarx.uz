@@ -21,7 +21,15 @@ function Hero() {
   const lang = useSelector((state) => state.data.lang);
   const languages = useSelector((state) => state.data.localization);
   const sliderSettings = {
-    dots: false,
+    dots: true,
+    customPaging: (i, currentSlide) => (
+      <div
+        className={`h-2 w-2 rounded-full mx-1 transition-colors duration-300 lg:-mt-10 -mt-5 ${
+          i === currentSlide ? "bg-blue-500" : "bg-white"
+        }`}
+      ></div>
+    ),
+    dotsClass: "slick-dots flex justify-center", // Style for the dots container
     // infinite: true,
     speed: 500,
     slidesToShow: 1,
