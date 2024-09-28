@@ -37,6 +37,7 @@ function Hero() {
     autoplay: true,
     autoplaySpeed: 3000,
   };
+
   return (
     <section className="mt-5 ">
       <div className="lg:mx-10 mx-2">
@@ -44,39 +45,61 @@ function Hero() {
           {/* Slider Section (2/3 width on large screens) */}
           <div className="lg:col-span-2">
             <Slider {...sliderSettings}>
-              <div className="">
+              <Link
+                href={{
+                  pathname: "/search",
+                  query: { keyword: "GeekCases" },
+                }}
+              >
                 <img
                   src="/Assets/Images/news/main1s.png"
                   alt="Slider Image 1"
                   className="w-full rounded h-full"
                 />
-              </div>
-              <div className="">
+              </Link>{" "}
+              <Link
+                href={{
+                  pathname: "/search",
+                  query: { keyword: "CoolGagets" },
+                }}
+              >
                 <img
                   src="/Assets/Images/news/main4s.png"
                   alt="Slider Image 2"
                   className="w-full rounded h-full"
                 />
-              </div>
+              </Link>
             </Slider>
           </div>
 
           {/* Static Images Section (side by side on mobile, stack vertically on larger screens) */}
           <div className="grid grid-cols-2 lg:grid-cols-1  lg:-mt-1.5 lg:gap-4 gap-1">
-            <div className="h-full">
+            <Link
+              href={{
+                pathname: "/search",
+                query: { keyword: "Adreamer" },
+              }}
+              className="h-full"
+            >
               <img
                 src="/Assets/Images/news/main2.png"
                 alt="Static Image 1"
                 className="w-full h-full object-contain rounded"
               />
-            </div>
-            <div className="h-full">
+            </Link>
+            <Link
+              href={{
+                pathname: "/search",
+                query: { keyword: "Zeblaze" },
+              }}
+              className="h-full"
+            >
               <img
                 src="/Assets/Images/news/main3.png"
                 alt="Static Image 2"
                 className="w-full h-full object-contain rounded"
               />
-            </div>
+            </Link>
           </div>
         </div>
       </div>
