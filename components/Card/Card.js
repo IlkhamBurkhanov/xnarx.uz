@@ -9,6 +9,8 @@ import Link from "next/link";
 import StarIcon from "../../public/Assets/Images/news/star.png";
 import ReviewIcon from "../../public/Assets/Images/news/review.png";
 import HeartIcon from "../../public/Assets/Images/news/heart.png";
+import HeartLiked from "../../public/Assets/Images/news/HeartLiked.svg";
+
 // import HeartIconFilled from "../../public/Assets/Images/news/heart.png";
 
 const img = process.env.NEXT_PUBLIC_IMG;
@@ -32,6 +34,7 @@ function Card({
   items,
 }) {
   const [liked, setLiked] = useState(false);
+  const [likedProducts, setLikedProducts] = useState([]);
   const lang = useSelector((state) => state.data.lang);
   const languages = useSelector((state) => state.data.localization);
 
@@ -43,7 +46,37 @@ function Card({
     const formattedPrice = parseFloat(price).toFixed(0);
     return formattedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
+  useEffect(() => {
+    const storedLikedProducts =
+      JSON.parse(localStorage.getItem("LikedProducts")) || [];
+    setLikedProducts(storedLikedProducts);
+  }, [likedProducts]);
 
+  const handleLikeToggle = () => {
+    const isLiked = likedProducts.some(
+      (likedProduct) => likedProduct.id === id
+    );
+
+    let updatedLikedProducts;
+
+    if (isLiked) {
+      // If already liked, remove it from the list
+      updatedLikedProducts = likedProducts.filter(
+        (likedProduct) => likedProduct.id !== id
+      );
+    } else {
+      // If not liked, add it to the list
+      updatedLikedProducts = [...likedProducts, { name, image, price, id }];
+    }
+
+    // Update the state and localStorage with the complete array (old + new liked product)
+    setLikedProducts(updatedLikedProducts);
+    localStorage.setItem("LikedProducts", JSON.stringify(updatedLikedProducts));
+  };
+
+  const isProductLiked = () => {
+    return likedProducts.some((likedProduct) => likedProduct.id === id);
+  };
   return (
     <>
       <div
@@ -53,12 +86,12 @@ function Card({
         <div className="relative">
           {/* Like Button */}
           <div
-            onClick={() => setLiked(!liked)}
+            onClick={handleLikeToggle}
             className="absolute top-2 right-2 cursor-pointer z-40"
           >
             <Image
               className="w-6 h-6"
-              src={HeartIcon}
+              src={isProductLiked() ? HeartLiked : HeartIcon}
               alt="Like"
               width={24}
               height={24}
