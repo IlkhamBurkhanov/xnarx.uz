@@ -9,7 +9,7 @@ import Link from "next/link";
 import StarIcon from "../../public/Assets/Images/news/star.png";
 import ReviewIcon from "../../public/Assets/Images/news/review.png";
 import HeartIcon from "../../public/Assets/Images/news/heart.png";
-import HeartLiked from "../../public/Assets/Images/news/HeartLiked.svg";
+import HeartLiked from "../../public/Assets/Images/news/heartLiked.svg";
 
 // import HeartIconFilled from "../../public/Assets/Images/news/heart.png";
 
