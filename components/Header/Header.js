@@ -212,7 +212,7 @@ function Header() {
                 />
               </form>
               <button className="bg-white z-50 hidden md:flex ml-5 w-11 h-11 relative  items-center justify-center cursor-pointer rounded-xl">
-                <Link href="/">
+                <Link href="/basket">
                   {savat?.length === 0 ? null : (
                     <div className=" bg-[#2B3D90] rounded-xl  z-20 ml-3 absolute w-4 h-4">
                       <h2 className=" text-center text-white  text-[8px] mt-0.5">
