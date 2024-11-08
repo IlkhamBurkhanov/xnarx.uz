@@ -1,39 +1,24 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Link from "next/link";
 
-// Import icons
 import StarIcon from "../../public/Assets/Images/news/star.png";
 import ReviewIcon from "../../public/Assets/Images/news/review.png";
 import HeartIcon from "../../public/Assets/Images/news/heart.png";
 import HeartLiked from "../../public/Assets/Images/news/heartLiked.svg";
 
-// import HeartIconFilled from "../../public/Assets/Images/news/heart.png";
 
 const img = process.env.NEXT_PUBLIC_IMG;
 
 function Card({
-  subattributes,
-  status_ru,
-  status_en,
-  status_uz,
-  name_ru,
-  name_en,
   name_uz,
   image,
   price,
-  sale,
-  data,
-  id,
-  onAdd,
-  onRemove,
-  product,
-  items,
+  id, isLoading,
 }) {
-  const [liked, setLiked] = useState(false);
   const [likedProducts, setLikedProducts] = useState([]);
   const lang = useSelector((state) => state.data.lang);
   const languages = useSelector((state) => state.data.localization);
@@ -50,7 +35,7 @@ function Card({
     const storedLikedProducts =
       JSON.parse(localStorage.getItem("LikedProducts")) || [];
     setLikedProducts(storedLikedProducts);
-  }, [likedProducts]);
+  }, []);
 
   const handleLikeToggle = () => {
     const isLiked = likedProducts.some(
@@ -60,16 +45,12 @@ function Card({
     let updatedLikedProducts;
 
     if (isLiked) {
-      // If already liked, remove it from the list
       updatedLikedProducts = likedProducts.filter(
         (likedProduct) => likedProduct.id !== id
       );
     } else {
-      // If not liked, add it to the list
-      updatedLikedProducts = [...likedProducts, { name, image, price, id }];
+      updatedLikedProducts = [...likedProducts, { name_uz, image, price, id }];
     }
-
-    // Update the state and localStorage with the complete array (old + new liked product)
     setLikedProducts(updatedLikedProducts);
     localStorage.setItem("LikedProducts", JSON.stringify(updatedLikedProducts));
   };
@@ -116,7 +97,6 @@ function Card({
             </div>
           </Link>
         </div>
-
         <div className="p-2 md:p-4 md:max-w-[320px]  border-t-lineColor border-t-1">
           {/* Review Section */}
           <Link

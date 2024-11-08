@@ -1,15 +1,15 @@
-import AboutUs from "../AboutUs/AboutUs";
-import Hero from "../Hero/Hero";
-import Consultation from "../Consultation/Consultation.js";
+import AboutUs from "../../components/AboutUs/AboutUs";
+import Hero from "../../components/Hero/Hero";
+import Consultation from "../../components/Consultation/Consultation.js";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Tovar_nov from "../Tovar_noviy/Tovar_noviy";
-import Sale_nov from "../Sale_tovar/Sale_tovar";
-import Populyar_nov from "../Populyar_tovar/Populyar_tovar";
+import Tovar_nov from "../../components/Tovar_noviy/Tovar_noviy";
+import Sale_nov from "../../components/Sale_tovar/Sale_tovar";
+import Populyar_nov from "../../components/Populyar_tovar/Populyar_tovar";
 
-import Magazines from "../Magazines/Magazines";
-import PopularCategories from "../PopularCategory/PopularCategories";
+import Magazines from "../../components/Magazines/Magazines";
+import PopularCategories from "../../components/PopularCategory/PopularCategories";
 import { setCategoryId, searchPageNumber } from "../../redux/siteDataReducer";
 
 function Main() {

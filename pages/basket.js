@@ -1,4 +1,4 @@
-import BasketMain from "../components/BasketMain/BasketMain";
+import BasketMain from "../modules/main/BasketMain/BasketMain";
 
 function Basket() {
   return (

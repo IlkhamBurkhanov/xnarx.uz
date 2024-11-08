@@ -175,7 +175,7 @@ const ProductDetails = ({ product }) => {
             </thead>
             <tbody className="hidden lg:block">
               {Object.keys(details).map((category, index) => (
-                <React.Fragment className="flex" key={index}>
+                <React.Fragment  key={index}>
                   <div className="flex">
                     <tr className="border-b">
                       <td className="px-4 min-w-[240px] py-2 font-bold text-[#FA7426] text-2xl uppercase">

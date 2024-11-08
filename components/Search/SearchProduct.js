@@ -2,28 +2,20 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import { useSearchParams } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
 import Card from "../Card/Card";
-import { setCategoryId, searchPageNumber } from "../../redux/siteDataReducer";
+import { searchPageNumber } from "../../redux/siteDataReducer";
 import { useEffect } from "react";
 import axios from "axios";
 import { Spinner } from "../Spinner/Spinner";
 import Pagination from "../Pagination/Pagination";
+import {useGetAllQuery} from "../../hooks";
 
 const env = process.env.NEXT_PUBLIC_TOKEN;
 
-export default function SearchProduct({ data }) {
-  // const searchParams = useSearchParams();
-
-  // const searchX = searchParams.get("search");
-  // console.log(searchX);
+export default function SearchProduct({}) {
   const [products, setProducts] = useState([]);
   const [loader, setLoader] = useState(true);
   const router = useRouter();
-  // console.log(router.query.keyword);
-  // const location = useLocation();
   const search = useSelector((state) => state.data.search);
   const currentPageNumber = useSelector((state) => state.data.pageNumber);
   const lang = useSelector((state) => state.data.lang);
@@ -43,6 +35,21 @@ export default function SearchProduct({ data }) {
   const [filterPrice, setFiltersPrice] = useState(true);
   const dispatch = useDispatch();
 
+
+  const { data, isLoading } = useGetAllQuery({
+    key: "search-product",
+    url: "product/search?",
+    params: {
+      name: router.query.keyword,
+      minPrice: priceRange.min,
+      maxPrice: priceRange.max,
+      orderType: true,
+      page:currentPage,
+      size: 15,
+    },
+  });
+
+
   const handleInput = (e) => {
     set_minValue(e.minValue);
     set_maxValue(e.maxValue);
@@ -60,35 +67,8 @@ export default function SearchProduct({ data }) {
     setPriceRange((prev) => ({ ...prev, [type]: value }));
   };
 
-  // --- Get Products
-  // useEffect(() => {
-  //   setLoader(true);
-  //   axios
-  //     .get(
-  //       `https://intex-shop-production.up.railway.app/api/categories/getCategories`
-  //     )
-  //     .then((res) => setHeading(res?.data.find((el) => el.id == categoryId)))
-  //     .catch((err) => console.error(err))
-  //     .finally(() => setLoader(false));
-  // }, [categoryId]);
-
-  // --- Search
-  function searchProduct(inputValue, data) {
-    let regex = new RegExp(inputValue, "gi");
-    const filterInput = data.filter((product) =>
-      product[`name_${lang}`].match(regex)
-    );
-
-    return filterInput;
-  }
-
-  const handleClick = () => {
-    setRotateEl(!rotateEl);
-  };
   useEffect(() => {
     setLoader(true);
-    //194.31.52.65:8080/api/product/search?name=Iphone&minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10
-    // http://194.31.52.65:8080/api/product/search/artel?minPrice=0&maxPrice=100000000&orderType=true&page=0&size=10
     http: axios
       .get(
         `${env}product/search?name=${router.query.keyword}&minPrice=${priceRange.min}&maxPrice=${priceRange.max}&orderType=True&page=${currentPage}&size=15`
@@ -173,11 +153,11 @@ export default function SearchProduct({ data }) {
                   </div>
                 </div>
               </div>
-              {loader ? (
+              {isLoading ? (
                 <div className="w-full h-20 md:w-[900px] md:h-[200px]  flex items-center justify-center">
                   <Spinner />
                 </div>
-              ) : products.length == 0 ? (
+              ) : data?.data?.object?.length == 0 ? (
                 <div className="w-full  sm:col-span-3 sm:mt-10 mt-2 rounded-md">
                   <p className=" bg-gray-300   sm:text-lg font-medium py-2 px-5 rounded-md">
                     Sizning soʻrovingiz boʻyicha hech narsa topilmadi

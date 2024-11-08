@@ -31,7 +31,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import ImageSale from "../../public/Assets/Images/news/fakeSale.png";
+import ImageSale from "../../../public/Assets/Images/news/fakeSale.png";
 
 // Import Swiper styles
 import "swiper/css";
@@ -42,8 +42,8 @@ import "swiper/css/scrollbar";
 // Import Swiper styles
 import "swiper/css";
 import { useSelector } from "react-redux";
-import { Spinner } from "../Spinner/Spinner";
-import ProductDetails from "../ProductDetails/ProductDetails";
+import { Spinner } from "../../../components/Spinner/Spinner";
+import ProductDetails from "../../../components/ProductDetails/ProductDetails";
 
 const env = process.env.NEXT_PUBLIC_TOKEN;
 const img = process.env.NEXT_PUBLIC_IMG;
@@ -209,7 +209,7 @@ const InfoTovar = () => {
         <div className="md:mt-[114px] mt-5 mx-5 md:mx-[130px]">
           <p className="flex items-center sm:text-base text-xs text-black-black_thin">
             <Link
-              href={`/`}
+              href={`/public`}
               className="text-orange-400"
               // onClick={() => dispatch(setCategoryId(0))}
             >

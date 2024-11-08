@@ -5,12 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import Card from "../Card/Card";
-import { setCategoryId } from "../../redux/siteDataReducer";
+import Card from "../../../components/Card/Card";
+import { setCategoryId } from "../../../redux/siteDataReducer";
 import { useEffect } from "react";
 import axios from "axios";
-import { Spinner } from "../Spinner/Spinner";
-import Pagination from "../Pagination/Pagination";
+import { Spinner } from "../../../components/Spinner/Spinner";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const env = process.env.NEXT_PUBLIC_TOKEN;
 
@@ -189,7 +189,7 @@ export default function Products({ data }) {
                     <h1 className=" font-bold sm:text-lg">Filter</h1>
                   </div>
                   <div className="mx-4 mt-4 border-b-1 pb-4 ">
-                    <h2 className=" font-bold sm:text-lg">Narx</h2>
+                    <h2 className=" font-bold sm:text-lg">Narxsasasas</h2>
 
                     <p className=" sm:text-sm text-xs px-2 mt-2">dan</p>
                     <input

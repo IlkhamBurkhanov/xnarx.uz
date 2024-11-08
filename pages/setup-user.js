@@ -1,4 +1,4 @@
-import Setup from "../components/Login/setup";
+import Setup from "../modules/auth/Login/setup";
 
 export default function SetupPage() {
   return (

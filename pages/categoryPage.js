@@ -1,4 +1,4 @@
-import Products from "../components/Products/Products";
+import Products from "../modules/main/Products/Products";
 
 function Order() {
   return (

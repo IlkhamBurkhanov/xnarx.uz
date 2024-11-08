@@ -1,5 +1,5 @@
 import React from "react";
-import InfoTovar from "../components/InfoTovar/InfoTovar";
+import InfoTovar from "../modules/main/InfoTovar/InfoTovar";
 
 function infoProduct() {
   return <InfoTovar />;
